@@ -3,8 +3,9 @@ import dotenv from 'dotenv';
 import path from 'path';
 
 import { connectToDatabase } from './databaseConnection';
-import { roleRoute } from './routes/role.route';
 import { userRoute } from './routes/user.route';
+import { authRoute } from './routes/auth.rout';
+import authenticate from './middlewares/auth';
 
 dotenv.config();
 
@@ -19,11 +20,15 @@ app.use(express.json());
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-app.use('/', roleRoute());
-app.use('/', userRoute());
+app.use('/api/', userRoute());
+app.use('/api/', authRoute());
 
 app.get('/api', (req, res) => {
-  return res.json({ message: 'Hello World!' });
+  return res.json({ message: 'Hello Arslan !' });
+});
+
+app.get('/api/authorizedOnly', authenticate, (req, res) => {
+  return res.json({ message: 'Hello Arslan !' });
 });
 
 // All other GET requests not handled before will return our React app

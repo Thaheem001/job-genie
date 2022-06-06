@@ -4,16 +4,15 @@ type UserDocument = Document & {
   fullName: string;
   email: string;
   password: string;
-  enabled: string;
-  role: string;
+  enabled: boolean;
+  stripePass: string;
 };
 
 type UserInput = {
   fullName: UserDocument['fullName'];
   email: UserDocument['email'];
-  password: UserDocument['password'];
-  enabled: UserDocument['enabled'];
-  role: UserDocument['role'];
+  password?: UserDocument['password'];
+  enabled?: UserDocument['enabled'];
 };
 
 const usersSchema = new Schema(
@@ -27,19 +26,18 @@ const usersSchema = new Schema(
       required: true,
       unique: true,
     },
+    stripePass: {
+      type: Schema.Types.String,
+      required: false,
+      unique: true,
+    },
     password: {
       type: Schema.Types.String,
-      required: true,
+      required: false,
     },
     enabled: {
       type: Schema.Types.Boolean,
-      default: true,
-    },
-    role: {
-      type: Schema.Types.ObjectId,
-      ref: 'Role',
-      required: true,
-      index: true,
+      default: false,
     },
   },
   {
