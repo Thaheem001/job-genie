@@ -9,7 +9,9 @@ a:active {
     color: initial;
     text-decoration: none !important;
 }
+
 $main-theme-color: #0155a5;
+
 body {
     padding: 0;
     .hompage-header {
@@ -26,6 +28,7 @@ body {
     .SignUpNowSec,
     .forgotPassword {
         background: url("./../public/Img/side-main-img.webp") no-repeat fixed;
+        background-size: 100%;
         width: 100%;
         height: 100vh;
         padding-top: 100px;
