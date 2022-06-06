@@ -1,3 +1,4 @@
+import React from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,13 +12,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import HeaderHompage from '../shared/HeaderHompage';
 
-const Login = () => {
+const ForgotPassword = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+            email: data.get('email')
         });
     };
 
@@ -38,7 +38,7 @@ const Login = () => {
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         </Avatar>
                         <Typography component="h1" variant="h5">
-                            Sign in
+                            Forgot Your Password !
                         </Typography>
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                             <TextField
@@ -51,32 +51,11 @@ const Login = () => {
                                 autoComplete="email"
                                 autoFocus
                             />
-                            <TextField
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                            />
+                            <button type="submit" className='btn-own w-100'>Forgot Password</button>
                             <Grid container justifyContent="flex-end">
                                 <Grid item>
-                                    <Link to="/forgot-password">
-                                        {"Forgot Password ?"}
-                                    </Link>
-                                </Grid>
-                            </Grid>
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
-                            />
-                            <button type="submit" className='btn-own w-100'>Sign In</button>
-                            <Grid container justifyContent="flex-end">
-                                <Grid item>
-                                    <Link to="/signUp">
-                                        {"Don't have an account? Sign Up"}
+                                    <Link to="/login">
+                                        &#8592;{" Back to Login"}
                                     </Link>
                                 </Grid>
                             </Grid>
@@ -87,4 +66,5 @@ const Login = () => {
         </>
     )
 }
-export default Login
+
+export default ForgotPassword
