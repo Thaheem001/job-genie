@@ -1,0 +1,185 @@
+@import "./fonts/font";
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a,
+a:hover,
+a:active {
+    color: initial;
+    text-decoration: none !important;
+}
+
+$main-theme-color: #0155a5;
+$main-body-color: #242450;
+$main-font: "Manufaktur";
+
+body {
+    padding: 0;
+    // font-family: $main-font !important;
+    background-color: $main-body-color !important;
+    color: #fff;
+    .hompage-header {
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        height: 110px;
+        left: 0;
+        z-index: 9;
+        padding-top: 15px;
+        &.header-active {
+            background-color: $main-body-color;
+            box-shadow: 0px 0px 26px #00000054;
+        }
+    }
+    .top_sectionMain,
+    .loginPage,
+    .SignUpNowSec,
+    .forgotPassword {
+        background: url("../../../public/Img/heroimage.png") no-repeat fixed;
+        background-size: 100%;
+        width: 100%;
+        height: 100vh;
+        padding-top: 100px;
+        // box-shadow: 0px 0px 15px #00000054;
+        position: relative;
+        .mainHeading {
+            font-size: 4em;
+            line-height: 1em;
+            font-weight: 700;
+            text-shadow: 0px 0px 6px $main-theme-color;
+            margin-bottom: 3rem;
+        }
+        .project-detail-sec {
+            padding: 40px 0px;
+            text-align: center;
+            position: absolute;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: $main-theme-color;
+            border-radius: 50px 0px 50px 0px;
+            box-shadow: 0px 0px 25px #00000054;
+            border: 2px solid #fff;
+            color: #fff;
+            h2 {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+            p {
+                font-size: 1.5rem;
+                width: 75%;
+                margin: 10px auto;
+            }
+        }
+    }
+    .community-sec {
+        padding: 170px 0 50px;
+    }
+    .find-job {
+        background-color: $main-theme-color;
+        // width: 75%;
+        display: block;
+        margin: 50px auto 0;
+        padding: 40px 30px;
+        // border-radius: 0px 30px 0px 30px;
+        // text-align: center;
+        // border: 2px solid #fff;
+        color: #fff;
+    }
+}
+.content-list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    li {
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 4rem;
+        color: #fff;
+    }
+}
+
+// for button css style
+.btn-own {
+    display: inline-block;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    color: #fff;
+    background-color: $main-theme-color;
+    padding: 10px 30px;
+    font-weight: 500;
+    min-width: 200px;
+    text-align: center;
+    border-radius: 25px 0px 25px 0px;
+    cursor: pointer;
+    border: 2px solid #fff;
+    margin: 10px auto;
+    &:hover {
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 5px $main-theme-color;
+        border-color: $main-theme-color;
+        color: $main-theme-color;
+    }
+    &-outline {
+        display: inline-block;
+        font-size: 1.5rem;
+        text-transform: capitalize;
+        color: #fff;
+        background-color: transparent;
+        padding: 10px 30px;
+        font-weight: 500;
+        min-width: 200px;
+        text-align: center;
+        border-radius: 0px 25px 0px 25px;
+        cursor: pointer;
+        border: 2px solid #fff;
+        margin: 10px auto;
+        &:hover {
+            background-color: rgba(255, 255, 255, 1);
+            box-shadow: 0px 0px 5px $main-theme-color;
+            border-color: #fff;
+        }
+    }
+    &:disabled {
+        cursor: no-drop;
+        user-select: none;
+        background-color: rgba(0, 0, 0, 0.26);
+        border: none !important;
+        box-shadow: none !important;
+        color: #fff;
+    }
+}
+.text-main {
+    color: $main-theme-color;
+}
+.bg-main {
+    background-color: $main-theme-color;
+}
+.text-shadow {
+    text-shadow: 0px 0px 10px $main-theme-color;
+}
+.container {
+    max-width: 80% !important;
+}
+// .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root,
+// .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
+//     color: #fff !important;
+// }
+// .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+//     border-color: #fff ;
+// }
+.css-binzgt {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 25px;
+    border: 2px solid $main-theme-color;
+}
+footer {
+    background-color: #101732;
+    padding: 25px 10px 5px;
+    color: #fff;
+}
