@@ -17,8 +17,7 @@ const SignUp = () => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         console.log({
-            firstName: data.get('firstName'),
-            lastName: data.get('lastName'),
+            firstName: data.get('fullName'),
             email: data.get('email'),
         });
     };
@@ -44,25 +43,15 @@ const SignUp = () => {
                         </Typography>
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
                             <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12} >
                                     <TextField
                                         autoComplete="given-name"
-                                        name="firstName"
+                                        name="fullName"
                                         required
                                         fullWidth
-                                        id="firstName"
-                                        label="First Name"
+                                        id="fullName"
+                                        label="Full Name"
                                         autoFocus
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        required
-                                        fullWidth
-                                        id="lastName"
-                                        label="Last Name"
-                                        name="lastName"
-                                        autoComplete="family-name"
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -78,7 +67,7 @@ const SignUp = () => {
                                 <Grid item xs={12}>
                                     <FormControlLabel
                                         control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                        label="I want to receive inspiration, marketing promotions and updates via email."
+                                        label="I Agree to Terms & Condition."
                                     />
                                 </Grid>
                             </Grid>
