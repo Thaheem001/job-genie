@@ -5,8 +5,8 @@ import "../src/components/style/App.scss";
 import Login from "./components/pages/Login";
 import SignUp from "./components/pages/SignUp";
 import ForgotPassword from "./components/pages/ForgotPassword";
-import SubscribePage from "./components/pages/Subscribe";
 import PaymentSuccess from "./components/pages/PaymentSuccess";
+import DashboardPage from "./components/pages/Dashboard";
 
 const App = () => {
   return (
@@ -15,12 +15,9 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/subscribe" element={<SubscribePage />} />
-        <Route
-          path="/paymentSuccess/:paymentTokken"
-          element={<PaymentSuccess />}
-        />
+        <Route path="/paymentSuccess/:paymentTokken" element={<PaymentSuccess />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/home" element={<DashboardPage />} />
       </Routes>
     </Router>
   );

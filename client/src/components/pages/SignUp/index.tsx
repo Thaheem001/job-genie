@@ -2,28 +2,44 @@ import { Avatar, CssBaseline, TextField, Checkbox, FormControlLabel, Grid, Typog
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import HomeLayout from "../../layout/HomeLayout";
+import ScreenLoader from "../../shared/ScreenLoader";
+import initializeStripe from "../../utils/initializeStripe";
 
 const SignUp = () => {
   const [checkBoxVal, setCheckBoxval] = useState<boolean>(true);
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [isVisibile, setIsVisible] = useState<boolean>(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // const fullname = data.get("fullName");
-    // const email = data.get("email");
-    // console.log(fullname, email);
-    fetch('http://localhost:3001/api/register', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "fullName": data.get("fullName"),
-        "email": data.get("email"),
-      })
-    }).then((res) => console.log(res));
+    console.log(data.get("email"), data.get("fullName"))
+    setIsVisible(true);
+    try {
+      const res = await fetch("/api/paynow", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: data.get("fullName"),
+          email: data.get("email"),
+        }),
+      });
+      const resObj = await res.json();
+      if (resObj.status !== "success") {
+        return console.log("Something went very wrong!", resObj);
+      }
+
+      const stripe = await initializeStripe();
+      stripe?.redirectToCheckout({ sessionId: resObj.stripeId });
+    } catch (error) {
+      return console.log("something went wrong here ", error);
+    }
+
   };
 
   return (
     <HomeLayout>
       <div className="SignUpNowSec">
+        <ScreenLoader isVisible={isVisibile} />
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
