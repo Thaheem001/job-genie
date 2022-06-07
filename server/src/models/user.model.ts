@@ -29,7 +29,6 @@ const usersSchema = new Schema(
     stripePass: {
       type: Schema.Types.String,
       required: false,
-      unique: true,
     },
     password: {
       type: Schema.Types.String,
