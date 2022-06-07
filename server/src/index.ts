@@ -4,8 +4,9 @@ import path from 'path';
 
 import { connectToDatabase } from './databaseConnection';
 import { userRoute } from './routes/user.route';
-import { authRoute } from './routes/auth.rout';
+import { authRoute } from './routes/auth.route';
 import authenticate from './middlewares/auth';
+import { paymentRoute } from './routes/payment.route';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.use('/api/', userRoute());
 app.use('/api/', authRoute());
+app.use('/api/', paymentRoute());
 
 app.get('/api', (req, res) => {
   return res.json({ message: 'Hello Arslan !' });
@@ -38,6 +40,5 @@ app.get('*', (req, res) => {
 
 app.listen(PORT, async () => {
   await connectToDatabase();
-
   console.log(`Application started on URL ${HOST}:${PORT} 🎉`);
 });
