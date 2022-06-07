@@ -23,7 +23,7 @@ const HomePage = () => {
               <div className="col-4">
                 <img
                   src="/img/right-side-img.svg"
-                  alt="right side main img"
+                  alt="right side main "
                   className="img-fluid"
                 />
               </div>
@@ -69,7 +69,7 @@ const HomePage = () => {
             <h2 className="text-light text-center text-shadow mb-5">Access to our source code & developer community</h2>
             <div className="row">
               <div className="col-5">
-                <img src="https://picsum.photos/600/300" className="img-fluid" alt="Challange Image" />
+                <img src="https://picsum.photos/600/300" className="img-fluid" alt="Challange " />
               </div>
               <div className="col-7 pl-5">
                 <ul className="content-list ,l-5">
