@@ -1,8 +1,9 @@
 import React from "react";
+import HomeFooter from "../../shared/HomeFooter";
 import HomeHeader from "../../shared/HomeHeader";
 
 type HomeLayoutProps = {
-  children: React.ReactElement;
+  children?: React.ReactElement;
 };
 
 const HomeLayout = ({ children }: HomeLayoutProps) => {
@@ -10,6 +11,7 @@ const HomeLayout = ({ children }: HomeLayoutProps) => {
     <div className="homeLayout">
       <HomeHeader />
       <>{children}</>
+      <HomeFooter />
     </div>
   );
 };
