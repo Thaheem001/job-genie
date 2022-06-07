@@ -165,13 +165,7 @@ body {
 .container {
     max-width: 80% !important;
 }
-// .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root,
-// .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
-//     color: #fff !important;
-// }
-// .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-//     border-color: #fff ;
-// }
+
 .css-binzgt {
     background-color: #fff;
     padding: 25px;
@@ -182,4 +176,42 @@ footer {
     background-color: #101732;
     padding: 25px 10px 5px;
     color: #fff;
+}
+.screenLoader {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    flex-direction: column;
+    h2 {
+        margin-top: 30px;
+    }
+    .css-18lrjg1-MuiCircularProgress-root {
+        width: 75px !important;
+        height: 75px !important;
+    }
+}
+.css-binzgt {
+    margin-top: 0px !important;
+}
+.paymentSuccess {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.paymentSuccess {
+    .css-i4bv87-MuiSvgIcon-root {
+        font-size: 10rem !important;
+        color: #24e924;
+    }
 }
