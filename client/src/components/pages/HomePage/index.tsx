@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomeLayout from "../../layout/HomeLayout";
 import PrimaryButton from "../../shared/PrimaryButton";
 
 const HomePage = () => {
+  useEffect(() => {
+    try {
+      fetch(`/api`)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log("something weird happend", error);
+    }
+  }, []);
   return (
     <HomeLayout>
       <main>
