@@ -84,7 +84,7 @@ const HomePage = () => {
                 <img
                   src="https://picsum.photos/600/300"
                   className="img-fluid"
-                  alt="Challange Image"
+                  alt="Challange_Image"
                 />
               </div>
               <div className="col-7 pl-5">
