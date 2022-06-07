@@ -8,17 +8,18 @@ const SignUp = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // const fullname = data.get("fullName");
-    // const email = data.get("email");
-    // console.log(fullname, email);
-    fetch('http://localhost:3001/api/register', {
+    const fullname = data.get("fullName");
+    const email = data.get("email");
+    console.log(fullname, email);
+    fetch('/api/register', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        "fullName": data.get("fullName"),
-        "email": data.get("email"),
+        "fullName": fullname,
+        "email": email,
       })
-    }).then((res) => console.log(res));
+    }).then(res => console.log(res))
+      .catch(err => console.log(err));
   };
 
   return (

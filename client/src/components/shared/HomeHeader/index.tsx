@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PrimaryButton from "../PrimaryButton";
 
@@ -22,7 +22,7 @@ const HeaderHompage = () => {
             </Link>
           </div>
           <div className="btnBox">
-            {(pathLocation.pathname == '/') &&
+            {(pathLocation.pathname === '/') &&
               <PrimaryButton to="/login" outline={true} value="Sign In" />
 
             }

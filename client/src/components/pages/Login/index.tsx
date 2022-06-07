@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CssBaseline, TextField, FormControlLabel, Checkbox, Grid, Typography, Box, Container, Avatar } from "@mui/material";
+import { CssBaseline, TextField, Grid, Typography, Box, Container, Avatar } from "@mui/material";
 import HomeLayout from "../../layout/HomeLayout";
 
 const Login = () => {
@@ -60,10 +60,6 @@ const Login = () => {
                   <Link to="/forgot-password">{"Forgot Password ?"}</Link>
                 </Grid>
               </Grid>
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
               <button type="submit" className="btn-own w-100">
                 Sign In
               </button>

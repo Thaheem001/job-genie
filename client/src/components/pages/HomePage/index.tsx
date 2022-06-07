@@ -23,7 +23,7 @@ const HomePage = () => {
               <div className="col-4">
                 <img
                   src="/img/right-side-img.svg"
-                  alt="right side main img"
+                  alt="right side main "
                   className="img-fluid"
                 />
               </div>
