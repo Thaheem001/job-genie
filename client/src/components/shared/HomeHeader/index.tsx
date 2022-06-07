@@ -1,10 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import PrimaryButton from "../PrimaryButton";
 
 const HeaderHompage = () => {
+  const [headerClass, setHeaderClass] = useState<boolean>(false);
+  const pathLocation = useLocation();
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset >= 200) {
+      setHeaderClass(true)
+    } else {
+      setHeaderClass(false)
+    }
+  })
   return (
-    <header className="hompage-header">
+    <header className={`hompage-header ${headerClass && 'header-active'}`}>
       <div className="container">
         <div className="d-flex justify-content-between align-items-center">
           <div className="logoBox">
@@ -13,7 +22,10 @@ const HeaderHompage = () => {
             </Link>
           </div>
           <div className="btnBox">
-            <PrimaryButton to="/login" outline={true} value="Sign In" />
+            {(pathLocation.pathname == '/') &&
+              <PrimaryButton to="/login" outline={true} value="Sign In" />
+
+            }
           </div>
         </div>
       </div>

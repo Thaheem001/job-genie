@@ -1,23 +1,24 @@
-import Avatar from "@mui/material/Avatar";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+import { Avatar, CssBaseline, TextField, Checkbox, FormControlLabel, Grid, Typography, Container, Box } from "@mui/material";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import HomeLayout from "../../layout/HomeLayout";
 
 const SignUp = () => {
+  const [checkBoxVal, setCheckBoxval] = useState<boolean>(true);
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      firstName: data.get("fullName"),
-      email: data.get("email"),
-    });
+    // const fullname = data.get("fullName");
+    // const email = data.get("email");
+    // console.log(fullname, email);
+    fetch('http://localhost:3001/api/register', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        "fullName": data.get("fullName"),
+        "email": data.get("email"),
+      })
+    }).then((res) => console.log(res));
   };
 
   return (
@@ -68,13 +69,14 @@ const SignUp = () => {
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
+                      <Checkbox value="allowExtraEmails" color="primary"
+                        onChange={() => checkBoxVal ? setCheckBoxval(false) : setCheckBoxval(true)} />
                     }
                     label="I Agree to Terms & Condition."
                   />
                 </Grid>
               </Grid>
-              <button type="submit" className="btn-own w-100">
+              <button type="submit" disabled={checkBoxVal} className={`btn-own w-100 `}>
                 Sign Up
               </button>
               <Grid container justifyContent="flex-end">
