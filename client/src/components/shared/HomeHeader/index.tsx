@@ -5,8 +5,8 @@ import PrimaryButton from "../PrimaryButton";
 const HeaderHompage = () => {
   const [headerClass, setHeaderClass] = useState<boolean>(false);
   const pathLocation = useLocation();
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset >= 200) {
+  document.addEventListener('scroll', () => {
+    if (window.pageYOffset >= 25) {
       setHeaderClass(true)
     } else {
       setHeaderClass(false)

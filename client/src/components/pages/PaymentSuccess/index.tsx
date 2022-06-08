@@ -43,8 +43,9 @@ const PaymentSuccess = (props: Props) => {
           <h1 className="text-light">
             Payment has been Successfully Deposite.
           </h1>
+          <p className="text-center text-danger">Please Check Your Email!. Password has ben sent to your Email Address</p>
           <Link className="btn-own" to={`/login`}>
-            Go to Dashboard
+            Go to Login
           </Link>
         </div>
       )}

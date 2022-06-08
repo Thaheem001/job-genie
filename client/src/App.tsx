@@ -8,16 +8,26 @@ import ForgotPassword from "./components/pages/ForgotPassword";
 import PaymentSuccess from "./components/pages/PaymentSuccess";
 import DashboardPage from "./components/pages/Dashboard";
 import PrivateRoute from "./components/Routes/PrivateRoute";
+import SubDec from "./components/pages/Dashboard/Sub-Disc";
+import Profile from "./components/pages/Dashboard/Profile";
+import Challenges from "./components/pages/Dashboard/Challenges";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/" element={<HomePage />} />
-
         <Route path="/home" element={<PrivateRoute />}>
           <Route index element={<DashboardPage />} />
+        </Route>
+        <Route path="/challenges" element={<PrivateRoute />}>
+          <Route index element={<Challenges />} />
+        </Route>
+        <Route path="/sub-dic" element={<PrivateRoute />}>
+          <Route index element={<SubDec />} />
+        </Route>
+        <Route path="/profile" element={<PrivateRoute />}>
+          <Route index element={<Profile />} />
         </Route>
 
         <Route path="/login" element={<Login />} />
