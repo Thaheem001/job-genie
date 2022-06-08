@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Outlet, useNavigate } from "react-router-dom";
 import ScreenLoader from "../../shared/ScreenLoader";
 import { validateAuthCookie } from "../../utils/validateAuthCookie";
@@ -16,10 +17,10 @@ const PrivateRoute = (props: Props) => {
           throw new Error("Tokken Expired!");
         }
         setLoading(false);
-        alert("Login SuccessFul");
+        toast.success("Login SuccessFul");
       })
       .catch((error: string) => {
-        alert(error);
+        toast.error(error.toString());
         navigate("/login");
       });
   }, []);

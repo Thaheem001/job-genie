@@ -71,9 +71,11 @@ const verifyAuthTokken = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'User not found!' });
     }
 
-    if (!verifiedTokken?.exp || !verifiedTokken.iat) {
-      return res.status(409).json({ error: 'Tokken is Expired!' });
+    if (!verifiedTokken?.exp || !verifiedTokken?.iat) {
+      return res.status(409).json({ error: 'Tokken is not valid!' });
     }
+
+    console.log("-->",verifiedTokken)
 
     const exp = new Date(verifiedTokken?.exp * 1000);
     const now = new Date();

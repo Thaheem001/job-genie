@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import HomeLayout from "../../layout/HomeLayout";
 import ScreenLoader from "../../shared/ScreenLoader";
 import initializeStripe from "../../utils/initializeStripe";
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
   const [checkBoxVal, setCheckBoxval] = useState<boolean>(true);
@@ -41,9 +42,10 @@ const SignUp = () => {
       const stripe = await initializeStripe();
       stripe?.redirectToCheckout({ sessionId: resObj.stripeId });
     } catch (error: any) {
-      alert(error || "Error Occured !");
-    }
+      console.log(error)
+      toast.error(error.toString());
 
+    }
     setIsVisible(false);
   };
 

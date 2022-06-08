@@ -6,7 +6,7 @@ import PrimaryButton from "../../shared/PrimaryButton";
 const HomePage = () => {
   return (
     <HomeLayout>
-      <main>
+      <>
         <section className="top_sectionMain">
           <div className="container h-100">
             <div className="row h-100 align-items-center">
@@ -63,12 +63,12 @@ const HomePage = () => {
               </div>
               <div className="col-5 my-5">
                 <iframe
-                  width="560"
-                  height="315"
+                  width="100%"
+                  height="100%"
                   style={{ border: "none" }}
                   src="https://www.youtube.com/embed/oQX39Q3Lazs"
                   title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}
                 ></iframe>
               </div>
             </div>
@@ -83,7 +83,7 @@ const HomePage = () => {
               <div className="col-5">
                 <img
                   src="https://picsum.photos/600/300"
-                  className="img-fluid"
+                  className="img-fluid styled-img"
                   alt="Challange_Image"
                 />
               </div>
@@ -111,7 +111,7 @@ const HomePage = () => {
                 </p>
                 <Link
                   to="/signup"
-                  className="btn-own-outline d-block w-50 mx-auto "
+                  className="btn-own-outline d-block w-50 ml-0"
                 >
                   Sign me Up
                 </Link>
@@ -126,7 +126,7 @@ const HomePage = () => {
             </div>
           </div>
         </section>
-      </main>
+      </>
     </HomeLayout>
   );
 };
