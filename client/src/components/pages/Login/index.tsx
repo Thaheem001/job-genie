@@ -1,15 +1,43 @@
-import { Link } from "react-router-dom";
-import { CssBaseline, TextField, Grid, Typography, Box, Container, Avatar } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  CssBaseline,
+  TextField,
+  Grid,
+  Typography,
+  Box,
+  Container,
+  Avatar,
+} from "@mui/material";
 import HomeLayout from "../../layout/HomeLayout";
+import ScreenLoader from "../../shared/ScreenLoader";
+import { useState } from "react";
 
 const Login = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    fetch("/api/login", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: data.get("email"),
+        password: data.get("password"),
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        navigate("/home");
+        console.log(data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -71,6 +99,7 @@ const Login = () => {
             </Box>
           </Box>
         </Container>
+        <ScreenLoader isVisible={loading} />
       </div>
     </HomeLayout>
   );
