@@ -1,4 +1,14 @@
-import { Avatar, CssBaseline, TextField, Checkbox, FormControlLabel, Grid, Typography, Container, Box } from "@mui/material";
+import {
+  Avatar,
+  CssBaseline,
+  TextField,
+  Checkbox,
+  FormControlLabel,
+  Grid,
+  Typography,
+  Container,
+  Box,
+} from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import HomeLayout from "../../layout/HomeLayout";
@@ -12,7 +22,7 @@ const SignUp = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data.get("email"), data.get("fullName"))
+
     setIsVisible(true);
     try {
       const res = await fetch("/api/paynow", {
@@ -25,15 +35,16 @@ const SignUp = () => {
       });
       const resObj = await res.json();
       if (resObj.status !== "success") {
-        return console.log("Something went very wrong!", resObj);
+        throw new Error(resObj.error);
       }
 
       const stripe = await initializeStripe();
       stripe?.redirectToCheckout({ sessionId: resObj.stripeId });
-    } catch (error) {
-      return console.log("something went wrong here ", error);
+    } catch (error: any) {
+      alert(error || "Error Occured !");
     }
 
+    setIsVisible(false);
   };
 
   return (
@@ -85,14 +96,25 @@ const SignUp = () => {
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
-                      <Checkbox value="allowExtraEmails" color="primary"
-                        onChange={() => checkBoxVal ? setCheckBoxval(false) : setCheckBoxval(true)} />
+                      <Checkbox
+                        value="allowExtraEmails"
+                        color="primary"
+                        onChange={() =>
+                          checkBoxVal
+                            ? setCheckBoxval(false)
+                            : setCheckBoxval(true)
+                        }
+                      />
                     }
                     label="I Agree to Terms & Condition."
                   />
                 </Grid>
               </Grid>
-              <button type="submit" disabled={checkBoxVal} className={`btn-own w-100 `}>
+              <button
+                type="submit"
+                disabled={checkBoxVal}
+                className={`btn-own w-100 `}
+              >
                 Sign Up
               </button>
               <Grid container justifyContent="flex-end">

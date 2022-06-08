@@ -82,6 +82,12 @@ const payForSubscription = async (req: Request, res: Response) => {
     return res.status(409).json({ error: 'Email and fullname are  required for this endpoint!' });
   }
 
+  const existingUser = await User.findOne({ email }).exec();
+
+  if (existingUser) {
+    return res.status(409).json({ error: 'User Already Exists !' });
+  }
+
   if (!tokkenSecret) {
     return res.status(409).json({ error: 'Something went very wrong !' });
   }
