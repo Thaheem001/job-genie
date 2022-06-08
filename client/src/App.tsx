@@ -7,17 +7,26 @@ import SignUp from "./components/pages/SignUp";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import PaymentSuccess from "./components/pages/PaymentSuccess";
 import DashboardPage from "./components/pages/Dashboard";
+import PrivateRoute from "./components/Routes/PrivateRoute";
 
 const App = () => {
   return (
     <Router>
       <Routes>
+        {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/" element={<HomePage />} />
+
+        <Route path="/home" element={<PrivateRoute />}>
+          <Route index element={<DashboardPage />} />
+        </Route>
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/paymentSuccess/:paymentTokken" element={<PaymentSuccess />} />
+        <Route
+          path="/paymentSuccess/:paymentTokken"
+          element={<PaymentSuccess />}
+        />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/home" element={<DashboardPage />} />
       </Routes>
     </Router>
   );
