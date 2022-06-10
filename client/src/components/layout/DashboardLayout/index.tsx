@@ -16,7 +16,7 @@ const DashboardLayout = ({ Aside, children }: DashboardLayOutProps) => {
                         <div className="main-dashboard-menue">
                             {Aside ? Aside : <AsideDash />}
                             <div className="right-side-dashboard-menu">
-                                {children}
+                                <>{children}</>
                             </div>
                         </div>
                     </section>

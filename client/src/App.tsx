@@ -11,32 +11,31 @@ import PrivateRoute from "./components/Routes/PrivateRoute";
 import SubDec from "./components/pages/Dashboard/Sub-Disc";
 import Profile from "./components/pages/Dashboard/Profile";
 import Challenges from "./components/pages/Dashboard/Challenges";
+import PracticeChallange from "./components/pages/Dashboard/Challenges/practice";
+import CashChallenges from "./components/pages/Dashboard/Challenges/Cash";
+import SubmitChallenge from "./components/pages/Dashboard/Sub-Disc/SubmitChallenge";
 
 const App = () => {
   return (
     <Router>
       <Routes>
+        {/* Public Router  */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<PrivateRoute />}>
-          <Route index element={<DashboardPage />} />
-        </Route>
-        <Route path="/challenges" element={<PrivateRoute />}>
-          <Route index element={<Challenges />} />
-        </Route>
-        <Route path="/sub-dic" element={<PrivateRoute />}>
-          <Route index element={<SubDec />} />
-        </Route>
-        <Route path="/profile" element={<PrivateRoute />}>
-          <Route index element={<Profile />} />
-        </Route>
-
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route
-          path="/paymentSuccess/:paymentTokken"
-          element={<PaymentSuccess />}
-        />
+        <Route path="/paymentSuccess/:paymentTokken" element={<PaymentSuccess />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        {/* Protected Routed  */}
+
+        <Route path="/" element={<PrivateRoute />}>
+          <Route path="home" element={<DashboardPage />} />
+          <Route path="challenges/practice" element={<Challenges />} />
+          <Route path="challenges/Cash" element={<CashChallenges />} />
+          <Route path="challenge/submit" element={<SubmitChallenge />} />
+          <Route path="sub-dic" element={<SubDec />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+
       </Routes>
     </Router>
   );
