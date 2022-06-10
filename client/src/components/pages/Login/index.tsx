@@ -11,6 +11,7 @@ import {
 import HomeLayout from "../../layout/HomeLayout";
 import ScreenLoader from "../../shared/ScreenLoader";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -21,24 +22,34 @@ const Login = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    fetch("/api/login", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: data.get("email"),
-        password: data.get("password"),
-      }),
-    })
-      .then((res) => {
-        return res.json();
+    // check if fourm is empty 
+    if (data.get("email") === ' ' || data.get("password") === ' ' || !data.get("email") || !data.get("password")) {
+      toast.error('Please fill all required fields!');
+      setLoading(false);
+      return false;
+    } else {
+      // console.log('test')
+      fetch("/api/login", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.get("email"),
+          password: data.get("password"),
+        }),
       })
-      .then((data) => {
-        navigate("/home");
-        console.log(data);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
-  };
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          navigate("/home");
+          console.log(data);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    };
+
+
+  }
 
   return (
     <HomeLayout>
