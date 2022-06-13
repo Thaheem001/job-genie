@@ -14,6 +14,7 @@ const HomePage = () => {
                 <h1 className="mainHeading text-light">
                   Are you a Javascript Developer looking for a job?
                 </h1>
+
                 <PrimaryButton
                   to="/signup"
                   value="Sign Up Now!"
@@ -68,7 +69,8 @@ const HomePage = () => {
                   style={{ border: "none" }}
                   src="https://www.youtube.com/embed/oQX39Q3Lazs"
                   title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen={true}
                 ></iframe>
               </div>
             </div>
