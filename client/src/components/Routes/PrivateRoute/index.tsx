@@ -9,6 +9,7 @@ type Props = {};
 const PrivateRoute = (props: Props) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
+  const [isLogedIn, setIsLogedIn] = useState<boolean>(false);
 
   useEffect(() => {
     validateAuthCookie()
@@ -17,10 +18,12 @@ const PrivateRoute = (props: Props) => {
           throw new Error("Tokken Expired!");
         }
         setLoading(false);
+        setIsLogedIn(true);
         toast.success("Login SuccessFul");
       })
       .catch((error: string) => {
         toast.error(error.toString());
+        setIsLogedIn(false);
         navigate("/login");
       });
   }, []);
@@ -28,7 +31,8 @@ const PrivateRoute = (props: Props) => {
   return (
     <>
       <ScreenLoader isVisible={loading} />
-      <Outlet />
+      {isLogedIn && <Outlet />}
+
     </>
   );
 };
