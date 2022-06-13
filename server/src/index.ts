@@ -7,6 +7,7 @@ import { userRoute } from './routes/user.route';
 import { authRoute } from './routes/auth.route';
 import authenticate from './middlewares/auth';
 import { paymentRoute } from './routes/payment.route';
+import { githubRepoRoute } from './routes/githubRepo.controller';
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.use('/api/', userRoute());
 app.use('/api/', authRoute());
 app.use('/api/', paymentRoute());
+app.use('/api/', githubRepoRoute());
 
 app.get('/api', (req, res) => {
   return res.json({ message: 'Hello Arslan !' });
