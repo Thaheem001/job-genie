@@ -9,8 +9,8 @@ const HomePage = () => {
       <>
         <section className="top_sectionMain">
           <div className="container h-100">
-            <div className="row h-100 align-items-center">
-              <div className="col-8">
+            <div className="row h-100 align-items-center ">
+              <div className="col-md-8 text-center text-md-left">
                 <h1 className="mainHeading text-light">
                   Are you a Javascript Developer looking for a job?
                 </h1>
@@ -20,7 +20,7 @@ const HomePage = () => {
                   outline={false}
                 />
               </div>
-              <div className="col-4">
+              <div className="col-md-4">
                 <img
                   src="/img/right-side-img.svg"
                   alt="right side main "
@@ -48,7 +48,7 @@ const HomePage = () => {
                 JobGenie Devs is the first community of software developers
                 dedicated to making the job search easier.
               </h1>
-              <div className="col-7 my-5">
+              <div className="col-xl-7 my-md-5">
                 <ul className="content-list">
                   <li>Member privileges include</li>
                   <li>Lifetime subscription to our Chrome Extension</li>
@@ -61,7 +61,7 @@ const HomePage = () => {
                   />
                 </ul>
               </div>
-              <div className="col-5 my-5">
+              <div className="col-xl-5 my-md-5 ifram-md-350">
                 <iframe
                   width="100%"
                   height="100%"
@@ -80,14 +80,14 @@ const HomePage = () => {
               Access to our source code & developer community
             </h2>
             <div className="row">
-              <div className="col-5">
+              <div className="col-md-5 d-flex align-items-center">
                 <img
                   src="https://picsum.photos/600/300"
                   className="img-fluid styled-img"
                   alt="Challange_Image"
                 />
               </div>
-              <div className="col-7 pl-5">
+              <div className="col-md-7 pl-5 ">
                 <ul className="content-list ,l-5">
                   <li>Member privileges include</li>
                   <li>Lifetime subscription to our Chrome Extension</li>
@@ -100,7 +100,7 @@ const HomePage = () => {
         <section className="find-job">
           <div className="container">
             <div className="row">
-              <div className="col-6">
+              <div className="col-lg-6 text-center text-lg-left">
                 <h3 className="">
                   Find a job and be part of a community improving the job
                   search.
@@ -111,12 +111,12 @@ const HomePage = () => {
                 </p>
                 <Link
                   to="/signup"
-                  className="btn-own-outline d-block w-50 ml-0"
+                  className="btn-own-outline d-block w-50 ml-lg-0"
                 >
                   Sign me Up
                 </Link>
               </div>
-              <div className="col-5 offset-1 ">
+              <div className="col-lg-5 offset-lg-1 mt-4 mt-lg-0 text-center text-lg-left">
                 <h2 className="">Price $175 membership for life.</h2>
                 <ul className="mt-4 list-unstyled">
                   <li>The best part is you can get your money back.</li>

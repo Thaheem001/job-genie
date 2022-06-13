@@ -11,14 +11,14 @@ const HomeFooter = (props: Props) => {
             <footer>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-3">
+                        <div className="col-lg-3">
                             <ul className='list-unstyled d-flex justify-content-around mb-0'>
                                 <li><Link to="#" className="text-light">Terms & Condition</Link></li>
                                 <li><Link to="#" className="text-light">Privacy</Link></li>
                             </ul>
                         </div>
-                        <div className="col-6 text-center text-light">©2023 by JobGenie.</div>
-                        <div className="col-3 d-flex justify-content-center">
+                        <div className="col-lg-6 col-md-8 offset-md-2 offset-lg-0 text-center text-light">©2023 by JobGenie.</div>
+                        <div className="col-lg-3  d-lg-flex justify-content-center d-none">
                             <ul className='list-unstyled d-flex mb-0'>
                                 <li>
                                     <Link className='text-light mr-3' to={'#'}><InstagramIcon /></Link>
