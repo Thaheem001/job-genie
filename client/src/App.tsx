@@ -11,7 +11,7 @@ import PrivateRoute from "./components/Routes/PrivateRoute";
 import SubDec from "./components/pages/Dashboard/Sub-Disc";
 import Profile from "./components/pages/Dashboard/Profile";
 import Challenges from "./components/pages/Dashboard/Challenges";
-import PracticeChallange from "./components/pages/Dashboard/Challenges/practice";
+
 import CashChallenges from "./components/pages/Dashboard/Challenges/Cash";
 import SubmitChallenge from "./components/pages/Dashboard/Sub-Disc/SubmitChallenge";
 
@@ -21,9 +21,13 @@ const App = () => {
       <Routes>
         {/* Public Router  */}
         <Route path="/" element={<HomePage />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/paymentSuccess/:paymentTokken" element={<PaymentSuccess />} />
+        <Route
+          path="/paymentSuccess/:paymentTokken"
+          element={<PaymentSuccess />}
+        />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         {/* Protected Routed  */}
 
@@ -35,7 +39,6 @@ const App = () => {
           <Route path="sub-dic" element={<SubDec />} />
           <Route path="profile" element={<Profile />} />
         </Route>
-
       </Routes>
     </Router>
   );
