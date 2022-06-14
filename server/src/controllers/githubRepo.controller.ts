@@ -23,7 +23,7 @@ const getRepo = async (req: Request, res: Response) => {
       repoName: result.name,
       repoDesc: result.description,
       repoLanguage: result.language,
-      repoUrls: result.url,
+      repoUrls: result.html_url,
     };
 
     return res.status(200).json({ message: 'success', data: repoInfo });
