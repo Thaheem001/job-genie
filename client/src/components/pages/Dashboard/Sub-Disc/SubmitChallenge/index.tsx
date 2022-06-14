@@ -1,11 +1,10 @@
 import React from "react";
 import DashboardLayout from "../../../../layout/DashboardLayout";
-import ProjectCard from "../../SourceCode/ProjectCard";
-import { Link } from "react-router-dom";
 import CommentsHistory from "./Comments";
 import SingleComment from "./Comments/SingleComment";
 import ReplyComments from "./Comments/ReplyComments";
 import ProfileDetails from "./ProfileDetails";
+import CommentInput from "./Comments/CommentInput";
 
 type Props = {};
 
@@ -23,6 +22,9 @@ const SubmitChallenge = (props: Props) => {
                   {/* Contenedor Principal */}
                   <div className="comments-container">
                     <h4 className="text-light">Comments & Feedback :</h4>
+                    {/* comment input box start  */}
+                    <CommentInput />
+                    {/* comment input box end */}
                     <CommentsHistory>
                       <>
                         <SingleComment>
@@ -32,9 +34,6 @@ const SubmitChallenge = (props: Props) => {
                             <ReplyComments />
                           </>
                         </SingleComment>
-                        <SingleComment />
-                        <SingleComment />
-                        <SingleComment />
                         <SingleComment />
                         <SingleComment />
                         <SingleComment>
