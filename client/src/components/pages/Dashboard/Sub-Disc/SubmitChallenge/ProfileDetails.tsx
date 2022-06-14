@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import FolderZipIcon from '@mui/icons-material/FolderZip';
+// import FolderZipIcon from '@mui/icons-material/FolderZip';
+// import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 type Props = {}
 
 const ProfileDetails = (props: Props) => {
-    const [isUpload, setIsUplaod] = useState<string>();
-    const handleChange = (e: any) => {
-        var files = e.target.files;
-        setIsUplaod(files[0]?.name);
-    }
+    // const [isUpload, setIsUplaod] = useState<string>();
+    // const handleChange = (e: any) => {
+    //     var files = e.target.files;
+    //     setIsUplaod(files[0]?.name);
+    // }
 
     return (
         <>
@@ -30,15 +30,16 @@ const ProfileDetails = (props: Props) => {
                         <div className="tag">JAVA</div>
                         <div className="tag">Java Script</div>
                     </div>
-                    {isUpload &&
+
+                    {/* {isUpload &&
                         <div className="Upload-folder-name bg-success d-inline-flex "><FolderZipIcon />{isUpload}</div>
-                    }
-                    <div className="upload-project">
+                    } */}
+                    {/* <div className="upload-project">
                         <label htmlFor="uploadDoc" className='btn-own float-right'><UploadFileIcon /> Upload Project</label>
                         <input type="file" name="upload-doc" id="uploadDoc"
                             accept=".zip,.rar,.7zip" className='d-none'
                             onChange={e => handleChange(e)} />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
