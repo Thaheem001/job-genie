@@ -49,9 +49,9 @@ const SingleComment = ({ comment }: Props) => {
           <div className="comment-box">
             <div className="comment-head">
               <h6 className="comment-name ">
-                <a href="#">Test</a>
+                <a href="#" className="d-inline-block">Test</a>
               </h6>
-              {/* <span>20 minutos</span> */}
+              <span>20 minutos</span>
               <i className="fa fa-reply" />
               <i className="fa fa-heart" />
               <button
