@@ -71,7 +71,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
         <h1 className="text-light text-center">Submit Challenge</h1>
         <div className="container-fluid text-light mt-3">
           <div className="row">
-            <div className="col-9">
+            <div className="col-lg-9 ">
               <div className="row">
                 <ProfileDetails />
                 <div className="col-12 my-3">
@@ -85,8 +85,8 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
                       <CommentsHistory>
                         <>
                           {commentsState?.length > 0 &&
-                            commentsState?.map((comment) => (
-                              <SingleComment {...comment} />
+                            commentsState?.map((comment, key) => (
+                              <SingleComment {...comment} key={key} />
                             ))}
                           {/* <SingleComment>
                           <>
