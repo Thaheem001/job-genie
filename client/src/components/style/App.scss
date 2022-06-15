@@ -525,8 +525,15 @@ footer {
 .Upload-folder-name {
   padding: 5px 10px;
   border-radius: 5px;
-  border: 1px solid #fff;
+  color: #fff !important;
+  span {
+    max-width: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   svg {
+    color: #fff !important;
     margin-right: 10px;
   }
 }
@@ -854,46 +861,6 @@ footer {
     }
   }
 }
-
-.input-container-with-btn {
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
-  textarea {
-    width: 80%;
-    min-height: 80px;
-    padding: 10px;
-    resize: none;
-    margin-right: 25px;
-    &:focus {
-      border: 0;
-      outline: 0;
-    }
-    &:focus ~ label,
-    &:not(:placeholder-shown) ~ label {
-      top: 4px !important;
-    }
-  }
-  label {
-    position: absolute;
-    top: -50px;
-    right: 21%;
-    background-color: #313667;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: all 0.5s;
-  }
-  .btn-own {
-    font-size: 14px;
-    min-width: auto;
-  }
-}
-.Upload-folder-name {
-  position: absolute;
-  top: -40px;
-  right: 20%;
-}
 .comment-box {
   position: relative;
   .replyButton {
@@ -905,10 +872,46 @@ footer {
     border: 0;
   }
 }
-.inner-comment {
-  width: calc(100% - 100px);
-  margin-left: 100px;
-  margin-bottom: 25px;
-  padding-top: 32px;
-  // display: none;
+
+// input attach file and comment
+.input-comment-and-attach-file {
+  background-color: #fff;
+  padding: 15px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px #000;
+  & svg {
+    color: #000;
+  }
+  .input-container-with-btn {
+    textarea {
+      width: 100%;
+      resize: none;
+      min-height: 75px;
+      padding: 15px 10px;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+    .btn-box {
+      justify-content: space-between;
+      align-items: center;
+      label {
+        margin-bottom: 0;
+        background-color: #fff;
+        color: #000;
+        cursor: pointer;
+        box-shadow: 1px 1px 6px #151538;
+        padding: 6px 10px;
+        border-radius: 5px;
+      }
+
+      .btn-own-input {
+        background-color: $main-theme-color;
+        color: #fff;
+        padding: 8px 10px;
+        min-width: 100px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
 }

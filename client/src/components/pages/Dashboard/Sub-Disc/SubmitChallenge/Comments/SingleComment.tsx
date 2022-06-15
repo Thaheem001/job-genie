@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ReplyAllIcon from "@mui/icons-material/ReplyAll";
 import CommentInput from "./CommentInput";
+import ReplyComments from "./ReplyComments";
 
 type Props = {
-  children?: React.ReactElement;
   comment: string;
   media?: string;
   commentedBy: string;
@@ -11,9 +11,33 @@ type Props = {
   replyCount: number;
   challengeId?: string;
 };
+type childArray = [any, any, any]
 
-const SingleComment = ({ children, comment }: Props) => {
+const SingleComment = ({ comment }: Props) => {
   const [isVisibleComment, setIsVisibleComment] = useState<boolean>(false);
+  const [childComments, setChildComments] = useState<childArray>([1, 2, 3]);
+
+
+  const addComment = async (dataToAdd: any) => {
+    const dataSnap = await fetch("/api/addComment", {
+      // Adding method type
+      method: "POST",
+      // Adding body or contents to send
+      body: JSON.stringify({
+        ...dataToAdd,
+      }),
+      // Adding headers to the request
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+
+    const cmData = await dataSnap.json();
+
+    const newCommentToAdd = cmData.data.commentToAdd;
+
+  };
+
 
   return (
     <>
@@ -46,19 +70,21 @@ const SingleComment = ({ children, comment }: Props) => {
           </div>
         </div>
         {/* Respuestas de los comentarios */}
-        {/* {children && (
-          <>
-            <ul className="comments-list reply-list">
-              <>{children}</>
-            </ul>
-          </>
-        )} */}
+
+        <ul className="comments-list reply-list">
+          {childComments?.length > 0 &&
+            childComments?.map((key) => (
+              <ReplyComments key={key} />
+            ))}
+        </ul>
+
+
       </li>
-      {/* {isVisibleComment && (
-        <div className="inner-comment">
-          <CommentInput />
+      {isVisibleComment && (
+        <div className="inner-comment mb-3">
+          <CommentInput addComment={addComment} />
         </div>
-      )} */}
+      )}
     </>
   );
 };
