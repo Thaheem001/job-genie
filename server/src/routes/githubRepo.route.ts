@@ -1,6 +1,6 @@
 import { Router } from 'express';
-// import { login, signUp, verifyAuthTokken } from '../controllers/auth.controller';
 import { getRepo } from '../controllers/githubRepo.controller';
+// import { login, signUp, verifyAuthTokken } from '../controllers/auth.controller';
 
 const githubRepoRoute = () => {
   const router = Router();

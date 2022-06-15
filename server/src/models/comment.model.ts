@@ -1,0 +1,31 @@
+import mongoose, { Schema, Model, Document } from 'mongoose';
+import { User } from './user.model';
+
+type CommentDocument = Document & {
+  comment: string;
+  media?: string;
+  commentedBy: string;
+  childId: string[];
+  replyCount: number;
+  challengeId?: string;
+};
+
+const commentSchema = new Schema(
+  {
+    comment: { type: String, required: true },
+    media: { type: String, default: null },
+    challengeId: { type: String, default: 'challenge_1' },
+    childId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+    replyCount: { type: Number, default: 0 },
+    commentedBy: { type: mongoose.Schema.Types.ObjectId, ref: User },
+  },
+  {
+    collection: 'comments',
+    timestamps: true,
+    minimize: false,
+  },
+);
+
+const Comment: Model<CommentDocument> = mongoose.model<CommentDocument>('Comment', commentSchema);
+
+export { Comment, CommentDocument };
