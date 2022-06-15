@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import ReplyIcon from "@mui/icons-material/Reply";
-import CommentInput from "./CommentInput";
+import React from "react";
 
 type Props = {};
 
 const ReplyComments = (props: Props) => {
-  const [isVisibleComment, setIsVisibleComment] = useState<boolean>(false);
   return (
     <>
       <li>
@@ -20,18 +17,6 @@ const ReplyComments = (props: Props) => {
             <span>10 minutos</span>
             <i className="fa fa-reply" />
             <i className="fa fa-heart" />
-
-            <button
-              className="replyButton"
-              title="Reply to this Comment"
-              onClick={() =>
-                isVisibleComment
-                  ? setIsVisibleComment(false)
-                  : setIsVisibleComment(true)
-              }
-            >
-              <ReplyIcon />
-            </button>
           </div>
           <div className="comment-content">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit
@@ -40,11 +25,6 @@ const ReplyComments = (props: Props) => {
           </div>
         </div>
       </li>
-      {/* {isVisibleComment &&
-                <div className="inner-comment inner-comment-child">
-                    <CommentInput />
-                </div>
-            } */}
     </>
   );
 };
