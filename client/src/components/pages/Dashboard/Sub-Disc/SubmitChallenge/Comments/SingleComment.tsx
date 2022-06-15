@@ -11,11 +11,11 @@ type Props = {
   replyCount: number;
   challengeId?: string;
 };
-type childArray = [any, any, any]
 
 const SingleComment = ({ comment }: Props) => {
   const [isVisibleComment, setIsVisibleComment] = useState<boolean>(false);
-  const [childComments, setChildComments] = useState<childArray>([1, 2, 3]);
+  const [hasChild, setHasChild] = useState<boolean>(true);
+  const [childComments, setChildComments] = useState<any[]>([1, 2,3]);
 
 
   const addComment = async (dataToAdd: any) => {
@@ -41,7 +41,7 @@ const SingleComment = ({ comment }: Props) => {
 
   return (
     <>
-      <li>
+      <li className={`${hasChild && 'has-child'} `}>
         <div className="comment-main-level">
           {/* Avatar */}
           {/* <div className="comment-avatar"><img src="https://picsum.photos/200" alt="" /></div> */}

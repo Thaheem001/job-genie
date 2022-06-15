@@ -35,7 +35,7 @@ const App = () => {
           <Route path="home" element={<DashboardPage />} />
           <Route path="challenges/practice" element={<Challenges />} />
           <Route path="challenges/Cash" element={<CashChallenges />} />
-          <Route path="challenge/submit" element={<SubmitChallenge />} />
+          <Route path="challenge/submit/:id" element={<SubmitChallenge />} />
           <Route path="sub-dic" element={<SubDec />} />
           <Route path="profile" element={<Profile />} />
         </Route>
