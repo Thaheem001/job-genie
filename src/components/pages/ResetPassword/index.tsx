@@ -26,7 +26,7 @@ const ResetPassword = () => {
         setLoading(true);
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const APIURL = process.env.REACT_APP_API_URL;
+        const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
 
         // check if fourm is empty 
         if (data.get("password") === ' ' || data.get("c_password") === ' ' || !data.get("password") || !data.get("c_password")) {

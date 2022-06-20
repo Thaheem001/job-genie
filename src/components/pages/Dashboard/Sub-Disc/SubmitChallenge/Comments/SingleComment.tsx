@@ -20,7 +20,7 @@ const SingleComment = ({
   );
 
   const addComment = async (dataToAdd: any) => {
-    const APIURL = process.env.REACT_APP_API_URL;
+    const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
     try {
       const commentToAdd = {
         comment: {

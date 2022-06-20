@@ -14,7 +14,7 @@ const Profile = (props: Props) => {
 
     const fetchUserProfile = async () => {
         const cookieKey = process.env.REACT_APP_AUTH_COOKIE;
-        const APIURL = process.env.REACT_APP_API_URL;
+        const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
         const authTokken = Cookies.get(cookieKey || "nothing");
 
         const dataSnap = await fetch(`${APIURL}/api/getProfile`, {

@@ -16,7 +16,7 @@ type RepoInfoType = {
 
 const SourceCode = (props: Props) => {
   const [repoInfo, setRepoInfo] = useState<RepoInfoType>();
-  const APIURL = process.env.REACT_APP_API_URL;
+  const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     fetch(`${APIURL}/api/repo`)

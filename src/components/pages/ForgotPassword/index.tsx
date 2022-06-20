@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const APIURL = process.env.REACT_APP_API_URL;
+    const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
 
     if (data.get("email") === ' ' || !data.get("email")) {
       toast.error('Please fill Emty Field')

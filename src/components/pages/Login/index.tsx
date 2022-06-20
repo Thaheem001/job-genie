@@ -12,6 +12,7 @@ import HomeLayout from "../../layout/HomeLayout";
 import ScreenLoader from "../../shared/ScreenLoader";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -21,7 +22,8 @@ const Login = () => {
     setLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const APIURL = process.env.REACT_APP_API_URL;
+    const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
+
 
     // check if fourm is empty 
     if (data.get("email") === ' ' || data.get("password") === ' ' || !data.get("email") || !data.get("password")) {
@@ -42,8 +44,9 @@ const Login = () => {
           return res.json();
         })
         .then((data) => {
-          navigate("/home");
           console.log(data);
+          Cookies.set(process.env.REACT_APP_AUTH_COOKIE || "code_genie_user", data.token)
+          navigate("/home");
         })
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));

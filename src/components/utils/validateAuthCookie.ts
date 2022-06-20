@@ -3,9 +3,11 @@ import Cookie from "js-cookie";
 export const validateAuthCookie = async () => {
   const cookieKey = process.env.REACT_APP_AUTH_COOKIE;
   const authTokken = Cookie.get(cookieKey || "nothing");
-  const APIURL = process.env.REACT_APP_API_URL;
+  const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
 
   // console.log(authTokken)
+
+  console.log("cookie key ", cookieKey, authTokken)
 
   if (!authTokken) {
     return false;
@@ -19,7 +21,7 @@ export const validateAuthCookie = async () => {
 
   const resObj = await res.json();
 
-  // console.log(resObj)
+  console.log(resObj)
 
   if (res.status !== 200) {
     throw new Error(resObj.error);

@@ -8,9 +8,9 @@ type Props = {};
 const PaymentSuccess = (props: Props) => {
   const { paymentTokken } = useParams();
   const [isVisibile, setIsVisible] = useState<boolean>(true);
-  
+
   const verifyPayment = async () => {
-    const APIURL = process.env.REACT_APP_API_URL;
+    const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
     try {
       const dataSnap = await fetch(`${APIURL}/api/paymentSuccess`, {
         method: "post",
