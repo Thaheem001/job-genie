@@ -3,6 +3,9 @@ import DashboardLayout from '../../../layout/DashboardLayout'
 import { TextField, Box, Modal, Button } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import Cookies from "js-cookie";
+import toast from 'react-hot-toast';
+import Cookie from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
@@ -11,6 +14,13 @@ const Profile = (props: Props) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [open, setOpen] = React.useState(false);
     const [openChangePass, setOpenChangePass] = React.useState(false);
+    const navigate = useNavigate();
+
+    // get auth tokken from cookie 
+    const cookieKey = process.env.REACT_APP_AUTH_COOKIE;
+    const authTokken = Cookie.get(cookieKey || "nothing");
+
+    const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
 
     const fetchUserProfile = async () => {
         const cookieKey = process.env.REACT_APP_AUTH_COOKIE;
@@ -52,15 +62,87 @@ const Profile = (props: Props) => {
         p: 4,
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitUpdateProfile = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log(data)
+
+        // const myData = JSON.stringify({
+        //     authTokken: authTokken,
+        //     email: userProfile?.email,
+        //     updates: {
+        //         fullName: data.get('f_name') || userProfile?.fullName,
+        //         phone: data.get('phone') || userProfile?.phone,
+        //         profession: data.get('profession') || userProfile?.profession,
+        //         linkedIn: data.get('linkedIn') || userProfile?.linkedIn,
+        //         about: data.get('about') || userProfile?.about,
+        //         portfolio: data.get('portfolio') || userProfile?.portfolio,
+        //     }
+        // })
+        // console.log(myData) 
+
+        fetch(`${APIURL}/api/updateUser`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                authTokken: authTokken,
+                email: userProfile?.email,
+                updates: {
+                    fullName: data.get('f_name') || userProfile?.fullName,
+                    phone: data.get('phone') || userProfile?.phone,
+                    profession: data.get('profession') || userProfile?.profession,
+                    linkedIn: data.get('linkedIn') || userProfile?.linkedIn,
+                    about: data.get('about') || userProfile?.about,
+                    portFolio: data.get('portFolio') || userProfile?.portfolio,
+                }
+            })
+        })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                if (data?.error) {
+                    toast.error(data?.error);
+                }
+                if (data?.data) {
+                    toast.success("Update Profile");
+                    navigate("/home");
+                }
+                console.log(data);
+            })
+            .catch((err) => console.log(err))
     }
     const handleSubmitUpdatePassword = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log(data)
+        let password = data?.get("new_password");
+        let passwordLength: any = password?.toString().length
+        if (data.get("new_password") !== data.get("c_new_password") || passwordLength < 8 || !data.get("password")) {
+            toast.error('please fill all the fileds and new password is min 8 digit')
+        } else {
+            fetch(`${APIURL}/api/changePassword`, {
+                method: "post",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    authTokken: authTokken,
+                    oldPassword: data.get("password"),
+                    newPassword: data.get("new_password")
+                }),
+            })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    if (data?.error) {
+                        toast.error(data?.error);
+                    }
+                    if (data?.message) {
+                        toast.success(data?.message);
+                        navigate("/home");
+                    }
+                    console.log(data);
+                })
+                .catch((err) => console.log(err))
+        }
     }
 
     useEffect(() => {
@@ -99,7 +181,13 @@ const Profile = (props: Props) => {
                                             </div>
                                             <div className="media col-md-6">
                                                 <label>Linked In</label>
-                                                <p>
+                                                <p style={{
+                                                    maxWidth: "calc(100% - 120px)",
+                                                    overflow: "hidden",
+                                                    textOverflow: "ellipsis",
+                                                    whiteSpace: "nowrap",
+                                                    display: "inline-block"
+                                                }}>
                                                     <a href={`https://${userProfile?.linkedIn}`}
                                                         className='text-light' target='_blank'
                                                     >{userProfile?.linkedIn}</a>
@@ -107,7 +195,13 @@ const Profile = (props: Props) => {
                                             </div>
                                             <div className="media col-md-6">
                                                 <label>Portfolio</label>
-                                                <p>
+                                                <p style={{
+                                                    maxWidth: "calc(100% - 120px)",
+                                                    overflow: "hidden",
+                                                    textOverflow: "ellipsis",
+                                                    whiteSpace: "nowrap",
+                                                    display: "inline-block"
+                                                }}>
                                                     <a href={`https://${userProfile?.portfolio}`}
                                                         className='text-light' target='_blank'
                                                     >{userProfile?.portfolio}</a>
@@ -134,7 +228,7 @@ const Profile = (props: Props) => {
                                     aria-labelledby="modal-modal-title"
                                     aria-describedby="modal-modal-description"
                                 >
-                                    <Box sx={style} component="form" onSubmit={handleSubmit}>
+                                    <Box sx={style} component="form" onSubmit={handleSubmitUpdateProfile}>
                                         <h3 className="text-dark text-center">Update User Info</h3>
                                         <TextField
                                             id="outlined-textarea"
@@ -143,6 +237,7 @@ const Profile = (props: Props) => {
                                             size="small"
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.fullName}
+                                            name='f_name'
 
                                         />
                                         <TextField
@@ -152,16 +247,17 @@ const Profile = (props: Props) => {
                                             size="small"
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.profession}
+                                            name='profession'
 
                                         />
-                                        <TextField
+                                        {/* <TextField
                                             id="outlined-textarea"
                                             label="Email Address "
                                             placeholder="Email Address"
                                             size="small"
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.email}
-                                        />
+                                        /> */}
                                         <TextField
                                             id="outlined-textarea"
                                             label="Phone Number "
@@ -169,6 +265,8 @@ const Profile = (props: Props) => {
                                             size="small"
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.phone}
+                                            name='phone'
+                                            type='tel'
                                         />
                                         <TextField
                                             id="outlined-textarea"
@@ -177,6 +275,7 @@ const Profile = (props: Props) => {
                                             size="small"
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.linkedIn}
+                                            name='linkedIn'
                                         />
                                         <TextField
                                             id="outlined-textarea"
@@ -185,6 +284,7 @@ const Profile = (props: Props) => {
                                             size="small"
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.portfolio}
+                                            name='portFolio'
                                         />
                                         <TextField
                                             id="outlined-multiline-static"
@@ -194,6 +294,7 @@ const Profile = (props: Props) => {
                                             rows={3}
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.about}
+                                            name='about'
                                         />
                                         <button type="submit" className="btn-own w-100">Update User</button>
                                     </Box>
@@ -214,6 +315,7 @@ const Profile = (props: Props) => {
                                             type="password"
                                             size="small"
                                             className='my-2 w-100'
+                                            name='password'
                                         />
                                         <TextField
                                             id="outlined-textarea"
@@ -222,6 +324,7 @@ const Profile = (props: Props) => {
                                             type="password"
                                             size="small"
                                             className='my-2 w-100'
+                                            name='new_password'
                                         />
                                         <TextField
                                             id="outlined-textarea"
@@ -230,6 +333,7 @@ const Profile = (props: Props) => {
                                             type="password"
                                             size="small"
                                             className='my-2 w-100'
+                                            name='c_new_password'
                                         />
                                         <button type="submit" className="btn-own w-100">Update User</button>
                                     </Box>

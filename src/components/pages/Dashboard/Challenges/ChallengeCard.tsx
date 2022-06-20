@@ -10,7 +10,7 @@ type PropsChallenge = {
     challengeId?: string;
 }
 
-const ChallengeCard = ({ title, price = 0, date, imgSrc = "https://picsum.photos/200/200", challengeId = 'challenge__1', tags }: PropsChallenge) => {
+const ChallengeCard = ({ title, price, date, imgSrc = "https://picsum.photos/200/200", challengeId = 'challenge__1', tags }: PropsChallenge) => {
     return (
         <Link to={`/challenge/submit/${challengeId}`}>
             <div className="challenge-card py-3 text-light">
@@ -30,7 +30,9 @@ const ChallengeCard = ({ title, price = 0, date, imgSrc = "https://picsum.photos
                         </div>
                         <div className="col-md-2 text-md-center text-right">
                             <div className="price-container text-center d-inline-block">
-                                <h3 className="price">$ <b> {price}</b></h3>
+                                {price &&
+                                    <h3 className="price">$ <b> {price}</b></h3>
+                                }
                             </div>
                         </div>
                     </div>

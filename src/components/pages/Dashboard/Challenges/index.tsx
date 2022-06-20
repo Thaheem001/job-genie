@@ -9,8 +9,8 @@ const Challenges = (props: Props) => {
         <DashboardLayout>
             <>
                 <h1 className='text-light text-center'>Practice Challange</h1>
-                <ChallengeCard title='Customize color' date='July 05' price={100} tags={['HTML5', "CSS3",]} />
-                <ChallengeCard title='Part time filters' date='July 05' price={100} tags={["Java Script", "Java"]} />
+                <ChallengeCard title='Customize color' date='July 05' tags={['HTML5', "CSS3",]} />
+                <ChallengeCard title='Part time filters' date='July 05' tags={["Java Script", "Java"]} />
             </>
         </DashboardLayout>
     )
