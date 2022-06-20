@@ -1,8 +1,10 @@
 import React from "react";
+import { CommentDocument } from "..";
+import CustomTimeAgo from "../../../../../shared/CustomTimeAgo";
 
-type Props = {};
+type ReplyCommentProp = CommentDocument & {};
 
-const ReplyComments = (props: Props) => {
+const ReplyComments = ({ comment, createdAt }: ReplyCommentProp) => {
   return (
     <>
       <li>
@@ -12,17 +14,15 @@ const ReplyComments = (props: Props) => {
         <div className="comment-box">
           <div className="comment-head">
             <h6 className="comment-name ">
-              <a href="https://picsum.photos/200">Agustin Ortiz</a>
+              <a href="https://picsum.photos/200">Test</a>
             </h6>
-            <span>10 minutos</span>
+            <span>
+              <CustomTimeAgo date={createdAt} />
+            </span>
             <i className="fa fa-reply" />
             <i className="fa fa-heart" />
           </div>
-          <div className="comment-content">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit
-            omnis animi et iure laudantium vitae, praesentium optio, sapiente
-            distinctio illo?
-          </div>
+          <div className="comment-content">{comment}</div>
         </div>
       </li>
     </>

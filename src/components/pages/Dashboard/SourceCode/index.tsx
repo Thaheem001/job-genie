@@ -16,9 +16,10 @@ type RepoInfoType = {
 
 const SourceCode = (props: Props) => {
   const [repoInfo, setRepoInfo] = useState<RepoInfoType>();
+  const APIURL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    fetch("/api/repo")
+    fetch(`${APIURL}/api/repo`)
       .then((snap) => snap.json())
       .then((res) => {
         setRepoInfo(res.data);

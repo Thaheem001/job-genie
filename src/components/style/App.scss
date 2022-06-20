@@ -918,3 +918,16 @@ footer {
     }
   }
 }
+
+// user info modal
+.userEdit-info {
+  .user-edit-info {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: $main-theme-color;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 0 10px;
+  }
+}

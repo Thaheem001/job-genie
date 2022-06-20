@@ -21,6 +21,7 @@ const Login = () => {
     setLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const APIURL = process.env.REACT_APP_API_URL;
 
     // check if fourm is empty 
     if (data.get("email") === ' ' || data.get("password") === ' ' || !data.get("email") || !data.get("password")) {
@@ -29,7 +30,7 @@ const Login = () => {
       return false;
     } else {
       // console.log('test')
-      fetch("/api/login", {
+      fetch(`${APIURL}/api/login`, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

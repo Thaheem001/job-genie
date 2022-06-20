@@ -6,36 +6,32 @@ import { validateAuthCookie } from "../../utils/validateAuthCookie";
 
 type Props = {};
 
-const PrivateRoute = (props: Props) => {
+const PublicRoute = (props: Props) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
-  const [isLogedIn, setIsLogedIn] = useState<boolean>(false);
+  const [isNotLoggedIn, setIsNotLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
     validateAuthCookie()
       .then((isValid) => {
         if (!isValid) {
-          throw new Error("Tokken Expired! P");
-          
+          throw new Error("Tokken Expired!");
         }
-        setLoading(false);
-        setIsLogedIn(true);
-        toast.success("Login SuccessFul");
+        navigate("/home");
       })
       .catch((error: string) => {
-        toast.error(error.toString());
-        setIsLogedIn(false);
-        navigate("/login");
+        setLoading(false);
+        setIsNotLoggedIn(true);
+        console.log("not logged in yet!", error);
       });
   }, []);
 
   return (
     <>
       <ScreenLoader isVisible={loading} />
-      {isLogedIn && <Outlet />}
-
+      {isNotLoggedIn && !loading && <Outlet />}
     </>
   );
 };
 
-export default PrivateRoute;
+export default PublicRoute;

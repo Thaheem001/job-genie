@@ -8,13 +8,16 @@ import CommentInput from "./Comments/CommentInput";
 import { Link } from "react-router-dom";
 import ProjectCard from "../../SourceCode/ProjectCard";
 
-type CommentDocument = {
+export type CommentDocument = {
+  _id: string;
   comment: string;
   media?: string;
   commentedBy: string;
-  childId: string[];
+  childId: CommentDocument[];
   replyCount: number;
   challengeId?: string;
+  createdAt: number;
+  updatedAt: number;
 };
 
 type Props = {
@@ -22,12 +25,11 @@ type Props = {
 };
 
 const SubmitChallenge = ({ comments = [] }: Props) => {
+  const APIURL = process.env.REACT_APP_API_URL;
   const fetchComments = async () => {
     try {
-      const commentsSnap = await fetch("/api/getChallengeComments");
+      const commentsSnap = await fetch(`${APIURL}/api/getChallengeComments`);
       const oldComments = await commentsSnap.json();
-
-      console.log(oldComments);
 
       setCommentsState(oldComments.data);
     } catch (error) {
@@ -37,7 +39,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
   };
 
   const addComment = async (dataToAdd: any) => {
-    const dataSnap = await fetch("/api/addComment", {
+    const dataSnap = await fetch(`${APIURL}/api/addComment`, {
       // Adding method type
       method: "POST",
       // Adding body or contents to send
@@ -52,7 +54,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
 
     const cmData = await dataSnap.json();
 
-    const newCommentToAdd = cmData.data.commentToAdd;
+    const newCommentToAdd = cmData.data.addedComment;
 
     setCommentsState((prev) => [...prev, newCommentToAdd]);
   };
@@ -100,13 +102,37 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
             <div className="col-3 text-center overflow-auto h-100">
               <h4 className="text-light">Other Challenges</h4>
               <div className="d-inline-block my-3">
-                <ProjectCard ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4" ownerName="DaudSamim" ownerUrl="" repoDesc="This is Javascript built dashboard like topCoder platform" repoLanguage="" repoName="JS_Job_Genie_Dashboard" repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard" />
+                <ProjectCard
+                  ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4"
+                  ownerName="DaudSamim"
+                  ownerUrl=""
+                  repoDesc="This is Javascript built dashboard like topCoder platform"
+                  repoLanguage=""
+                  repoName="JS_Job_Genie_Dashboard"
+                  repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard"
+                />
               </div>
               <div className="d-inline-block my-3">
-                <ProjectCard ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4" ownerName="DaudSamim" ownerUrl="" repoDesc="This is Javascript built dashboard like topCoder platform" repoLanguage="" repoName="JS_Job_Genie_Dashboard" repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard" />
+                <ProjectCard
+                  ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4"
+                  ownerName="DaudSamim"
+                  ownerUrl=""
+                  repoDesc="This is Javascript built dashboard like topCoder platform"
+                  repoLanguage=""
+                  repoName="JS_Job_Genie_Dashboard"
+                  repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard"
+                />
               </div>
               <div className="d-inline-block my-3">
-                <ProjectCard ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4" ownerName="DaudSamim" ownerUrl="" repoDesc="This is Javascript built dashboard like topCoder platform" repoLanguage="" repoName="JS_Job_Genie_Dashboard" repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard" />
+                <ProjectCard
+                  ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4"
+                  ownerName="DaudSamim"
+                  ownerUrl=""
+                  repoDesc="This is Javascript built dashboard like topCoder platform"
+                  repoLanguage=""
+                  repoName="JS_Job_Genie_Dashboard"
+                  repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard"
+                />
               </div>
             </div>
           </div>

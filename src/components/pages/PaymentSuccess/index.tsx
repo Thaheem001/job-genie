@@ -8,10 +8,11 @@ type Props = {};
 const PaymentSuccess = (props: Props) => {
   const { paymentTokken } = useParams();
   const [isVisibile, setIsVisible] = useState<boolean>(true);
-
+  
   const verifyPayment = async () => {
+    const APIURL = process.env.REACT_APP_API_URL;
     try {
-      const dataSnap = await fetch("/api/paymentSuccess", {
+      const dataSnap = await fetch(`${APIURL}/api/paymentSuccess`, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ paymentTokken }),
