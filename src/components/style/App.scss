@@ -47,7 +47,7 @@ body {
       min-height: calc(100vh - 190px);
       margin-top: 110px;
       .top_sectionMain {
-        padding-top: 20vh !important;
+        padding-top: 5vh !important;
         @media (max-width: 767px) {
           padding-top: 25px !important;
           & > .container .row {
