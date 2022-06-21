@@ -23,7 +23,7 @@ const HomePage = () => {
               </div>
               <div className="col-md-4">
                 <img
-                  src="/img/main_Img.png"
+                  src="/img/main_Img.webp"
                   alt="main_right-side_image"
                   className="img-fluid"
                 />
