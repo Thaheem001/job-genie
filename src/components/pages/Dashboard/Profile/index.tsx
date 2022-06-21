@@ -70,15 +70,15 @@ const Profile = (props: Props) => {
         //     authTokken: authTokken,
         //     email: userProfile?.email,
         //     updates: {
+        //         about: data.get('about') || userProfile?.about,
         //         fullName: data.get('f_name') || userProfile?.fullName,
+        //         linkedIn: data.get('linkedIn') || userProfile?.linkedIn,
         //         phone: data.get('phone') || userProfile?.phone,
         //         profession: data.get('profession') || userProfile?.profession,
-        //         linkedIn: data.get('linkedIn') || userProfile?.linkedIn,
-        //         about: data.get('about') || userProfile?.about,
         //         portfolio: data.get('portfolio') || userProfile?.portfolio,
         //     }
         // })
-        // console.log(myData) 
+        // console.log(myData)
 
         fetch(`${APIURL}/api/updateUser`, {
             method: "PATCH",
@@ -87,12 +87,12 @@ const Profile = (props: Props) => {
                 authTokken: authTokken,
                 email: userProfile?.email,
                 updates: {
-                    fullName: data.get('f_name') || userProfile?.fullName,
-                    phone: data.get('phone') || userProfile?.phone,
-                    profession: data.get('profession') || userProfile?.profession,
-                    linkedIn: data.get('linkedIn') || userProfile?.linkedIn,
                     about: data.get('about') || userProfile?.about,
-                    portFolio: data.get('portFolio') || userProfile?.portfolio,
+                    fullName: data.get('f_name') || userProfile?.fullName,
+                    linkedIn: data.get('linkedIn') || userProfile?.linkedIn,
+                    phone: data.get('phone') || userProfile?.phone,
+                    portFolio: data.get('portFolio') || userProfile?.portFolio,
+                    profession: data.get('profession') || userProfile?.profession,
                 }
             })
         })
@@ -202,9 +202,9 @@ const Profile = (props: Props) => {
                                                     whiteSpace: "nowrap",
                                                     display: "inline-block"
                                                 }}>
-                                                    <a href={`https://${userProfile?.portfolio}`}
+                                                    <a href={`https://${userProfile?.portFolio}`}
                                                         className='text-light' target='_blank'
-                                                    >{userProfile?.portfolio}</a>
+                                                    >{userProfile?.portFolio}</a>
                                                 </p>
                                             </div>
                                             <div className="media col-md-6">
@@ -231,7 +231,6 @@ const Profile = (props: Props) => {
                                     <Box sx={style} component="form" onSubmit={handleSubmitUpdateProfile}>
                                         <h3 className="text-dark text-center">Update User Info</h3>
                                         <TextField
-                                            id="outlined-textarea"
                                             label="Full Name"
                                             placeholder="Full Name"
                                             size="small"
@@ -241,7 +240,6 @@ const Profile = (props: Props) => {
 
                                         />
                                         <TextField
-                                            id="outlined-textarea"
                                             label="Profession"
                                             placeholder="Profession"
                                             size="small"
@@ -259,7 +257,6 @@ const Profile = (props: Props) => {
                                             defaultValue={userProfile?.email}
                                         /> */}
                                         <TextField
-                                            id="outlined-textarea"
                                             label="Phone Number "
                                             placeholder="Phone Number"
                                             size="small"
@@ -269,7 +266,6 @@ const Profile = (props: Props) => {
                                             type='tel'
                                         />
                                         <TextField
-                                            id="outlined-textarea"
                                             label="Linked In "
                                             placeholder="Linked In"
                                             size="small"
@@ -278,12 +274,11 @@ const Profile = (props: Props) => {
                                             name='linkedIn'
                                         />
                                         <TextField
-                                            id="outlined-textarea"
                                             label="Portfolio "
                                             placeholder="Portfolio"
                                             size="small"
                                             className='my-2 w-100'
-                                            defaultValue={userProfile?.portfolio}
+                                            defaultValue={userProfile?.portFolio}
                                             name='portFolio'
                                         />
                                         <TextField
