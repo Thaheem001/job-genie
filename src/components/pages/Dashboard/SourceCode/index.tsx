@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import ProjectCard from "./ProjectCard";
+import { useDispatch } from "react-redux";
+import { changeHeading } from "../../../../features/HeaderHeading/HeaderHeadingSlice";
 
 type Props = {};
 
@@ -17,20 +19,22 @@ type RepoInfoType = {
 const SourceCode = (props: Props) => {
   const [repoInfo, setRepoInfo] = useState<RepoInfoType>();
   const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
+  const dispatch = useDispatch();
+  dispatch(changeHeading('Source Code'));
 
   useEffect(() => {
     fetch(`${APIURL}/api/repo`)
       .then((snap) => snap.json())
       .then((res) => {
         setRepoInfo(res.data);
-        console.log("I got the res here !", res);
+        // console.log("I got the res here !", res);
       })
       .catch(() => alert("something went wrong"));
   }, []);
 
   return (
     <>
-      <h1 className="text-center text-light mb-4">Source Code</h1>
+      {/* <h1 className="text-center text-light mb-4">Source Code</h1> */}
       <Grid
         spacing={2}
         container

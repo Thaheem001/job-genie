@@ -7,7 +7,7 @@ export const validateAuthCookie = async () => {
 
   // console.log(authTokken)
 
-  console.log("cookie key ", cookieKey, authTokken)
+  // console.log("cookie key ", cookieKey, authTokken)
 
   if (!authTokken) {
     return false;
@@ -21,7 +21,7 @@ export const validateAuthCookie = async () => {
 
   const resObj = await res.json();
 
-  console.log(resObj)
+  // console.log(resObj)
 
   if (res.status !== 200) {
     throw new Error(resObj.error);

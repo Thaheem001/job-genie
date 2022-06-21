@@ -15,6 +15,7 @@ import CashChallenges from "./components/pages/Dashboard/Challenges/Cash";
 import SubmitChallenge from "./components/pages/Dashboard/Sub-Disc/SubmitChallenge";
 import ResetPassword from "./components/pages/ResetPassword";
 import PublicRoute from "./components/Routes/PublicRoute/indes";
+import Logout from "./components/layout/Logout";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
         />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/resetpass/:tokken" element={<ResetPassword />} />
+        <Route path="/logout" element={<Logout />} />
         {/* Protected Routed  */}
 
         <Route path="/" element={<PrivateRoute />}>

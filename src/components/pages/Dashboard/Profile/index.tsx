@@ -6,6 +6,8 @@ import Cookies from "js-cookie";
 import toast from 'react-hot-toast';
 import Cookie from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { changeHeading } from '../../../../features/HeaderHeading/HeaderHeadingSlice';
 
 type Props = {};
 
@@ -15,6 +17,10 @@ const Profile = (props: Props) => {
     const [open, setOpen] = React.useState(false);
     const [openChangePass, setOpenChangePass] = React.useState(false);
     const navigate = useNavigate();
+
+    // dispatch redux 
+    const dispatch = useDispatch();
+    dispatch(changeHeading('Profile'));
 
     // get auth tokken from cookie 
     const cookieKey = process.env.REACT_APP_AUTH_COOKIE;
@@ -65,21 +71,7 @@ const Profile = (props: Props) => {
     const handleSubmitUpdateProfile = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-
-        // const myData = JSON.stringify({
-        //     authTokken: authTokken,
-        //     email: userProfile?.email,
-        //     updates: {
-        //         about: data.get('about') || userProfile?.about,
-        //         fullName: data.get('f_name') || userProfile?.fullName,
-        //         linkedIn: data.get('linkedIn') || userProfile?.linkedIn,
-        //         phone: data.get('phone') || userProfile?.phone,
-        //         profession: data.get('profession') || userProfile?.profession,
-        //         portfolio: data.get('portfolio') || userProfile?.portfolio,
-        //     }
-        // })
-        // console.log(myData)
-
+        // fetch api for update user details 
         fetch(`${APIURL}/api/updateUser`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
@@ -155,11 +147,6 @@ const Profile = (props: Props) => {
                 <section className="profile-section about-section gray-bg position-relative">
                     <div className="container-fluid">
                         <div className="row align-items-center ">
-                            {/* <div className="col-3 profile-img">
-                                <div className="about-avatar">
-                                    <img className='img-fluid' src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Profile_Image" />
-                                </div>
-                            </div> */}
                             {userProfile && (
                                 <div className="col-md-9">
                                     <div className="about-text go-to">
@@ -346,7 +333,7 @@ const Profile = (props: Props) => {
                     </div>
                 </section>
             ) : (
-                <h2>Loading ! ...</h2>
+                <h2 className='text-light text-center'>Loading ! ...</h2>
             )}
         </DashboardLayout>
     );
