@@ -41,6 +41,13 @@ body {
       background-color: $main-body-color;
       box-shadow: 0px 0px 26px #00000054;
     }
+    .dashboard-heading h1 {
+      font-size: 2rem;
+      @media (max-width: 767px) {
+        font-size: 1rem;
+      }
+    }
+    
   }
   .homeLayout {
     & > main {
@@ -64,7 +71,7 @@ body {
       .forgotPassword {
         background-size: 100%;
         width: 100%;
-        min-height: calc(100vh - 155px);
+        // min-height: calc(100vh - 155px);
         padding-top: 30px;
         position: relative;
         .mainHeading {

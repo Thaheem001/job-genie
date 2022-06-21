@@ -52,7 +52,7 @@ const HeaderHompage = () => {
               <PrimaryButton to="/login" outline={true} value="Sign In" />
             }
             {isLogedIn &&
-              <PrimaryButton to="/logout" outline={true} value="Logout" />
+              <Link to="/logout" className="btn btn-light">Logout</Link>
             }
 
           </div>

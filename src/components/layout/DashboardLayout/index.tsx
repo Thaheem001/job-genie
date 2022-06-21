@@ -16,7 +16,7 @@ const DashboardLayout = ({ Aside, children }: DashboardLayOutProps) => {
                 <HomeLayout>
                     <>
                         <button
-                            style={{ color: '#fff', position: 'fixed', top: '10px', right: '10px', fontSize: '28px', border: 'none', cursor: 'pointer', background: 'none', zIndex: '22' }} className='menuBtn'
+                            style={{ color: '#fff', position: 'fixed', top: '-7px', right: '10px', fontSize: '35px', border: 'none', cursor: 'pointer', background: 'none', zIndex: '22' }} className='menuBtn'
                             onClick={() => isactiveAside ? setIsActiveAside(false) : setIsActiveAside(true)}
                         >
                             <MenuIcon />
