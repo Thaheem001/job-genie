@@ -33,27 +33,28 @@ const HomePage = () => {
           <div className="project-detail-sec">
             <div className="">
               <h2 className="">
-                Our chrome extension will apply you to 100s a week.{" "}
+                Our chrome extension will apply you to 100s of jobs a week.
               </h2>
-              <p className="font-weight-bold">
-                Allow you to grow your portfolio and contribute to the future of
-                job search software.
-              </p>
+              <span className="d-inline-block mt-2">&</span>
+              <p className="font-weight-bold"> Allow ….. (that sentence is correct and should stay as is) </p>
             </div>
           </div>
         </section>
         <section className="community-sec">
           <div className="container">
             <div className="row">
-              <h1 className="text-center text-light text-shadow">
+              <h1 className="text-justify text-light text-shadow">
                 JobGenie Devs is the first community of software developers
                 dedicated to making the job search easier.
               </h1>
+              <h3 className="text-center text-light w-100 mb-md-4">Membership Privileges Include:</h3>
               <div className="col-xl-7 my-md-5">
+                <h3 className="text-light">Lifetime access to JobGenie Developed software:</h3>
                 <ul className="content-list">
-                  <li>Member privileges include</li>
-                  <li>Lifetime subscription to our Chrome Extension</li>
-                  <li>Apply to 100s of jobs with the click of a button.</li>
+                  <li>Chrome extension that applies to jobs for you</li>
+                  <li>Web app that will scan your resume and tell you how compatible it is with different job
+                    descriptions.
+                  </li>
                   <PrimaryButton
                     to="/signup"
                     value="Join Now!"
@@ -76,11 +77,12 @@ const HomePage = () => {
             </div>
           </div>
         </section>
+        <h2 className="text-light text-center">+</h2>
         <section className="developer-code">
           <div className="container py-5">
-            <h2 className="text-light text-center text-shadow mb-5">
+            {/* <h2 className="text-light text-center text-shadow mb-5">
               Access to our source code & developer community
-            </h2>
+            </h2> */}
             <div className="row">
               <div className="col-md-5 d-flex align-items-center">
                 <img
@@ -90,10 +92,10 @@ const HomePage = () => {
                 />
               </div>
               <div className="col-md-7 pl-5 ">
-                <ul className="content-list ,l-5">
-                  <li>Member privileges include</li>
-                  <li>Lifetime subscription to our Chrome Extension</li>
-                  <li>Apply to 100s of jobs with the click of a button.</li>
+              <h3 className="text-light mt-md-3">Access to our source code & developer community.</h3>
+                <ul className="content-list">
+                  <li>Improve your portfolio & Javascript skills by completing challenges.</li>
+                  <li>Win cash prizes ($500+)</li>
                 </ul>
               </div>
             </div>

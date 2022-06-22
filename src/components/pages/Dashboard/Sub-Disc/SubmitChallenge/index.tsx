@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../../../layout/DashboardLayout";
 import CommentsHistory from "./Comments";
 import SingleComment from "./Comments/SingleComment";
-// import ReplyComments from "./Comments/ReplyComments";
 import ProfileDetails from "./ProfileDetails";
 import CommentInput from "./Comments/CommentInput";
-import { Link } from "react-router-dom";
-import ProjectCard from "../../SourceCode/ProjectCard";
+import { useDispatch } from "react-redux";
+import { changeHeading } from "../../../../../features/HeaderHeading/HeaderHeadingSlice";
 
 export type CommentDocument = {
   _id: string;
@@ -40,13 +39,10 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
 
   const addComment = async (dataToAdd: any) => {
     const dataSnap = await fetch(`${APIURL}/api/addComment`, {
-      // Adding method type
       method: "POST",
-      // Adding body or contents to send
       body: JSON.stringify({
         ...dataToAdd,
       }),
-      // Adding headers to the request
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -64,6 +60,9 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
   const [commentsState, setCommentsState] = useState<CommentDocument[]>(
     comments
   );
+  // dispatch update 
+  const dispatch = useDispatch();
+  dispatch(changeHeading('Submit Challenge'));
 
   useEffect(() => {
     fetchComments();
@@ -72,7 +71,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
   return (
     <DashboardLayout>
       <>
-        <h1 className="text-light text-center">Submit Challenge</h1>
+        {/* <h1 className="text-light text-center">Submit Challenge</h1> */}
         <div className="container-fluid text-light mt-3">
           <div className="row">
             <div className="col-lg-9 ">
@@ -101,39 +100,21 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
             </div>
             <div className="col-3 text-center overflow-auto h-100">
               <h4 className="text-light">Other Challenges</h4>
-              <div className="d-inline-block my-3">
-                <ProjectCard
-                  ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4"
-                  ownerName="DaudSamim"
-                  ownerUrl=""
-                  repoDesc="This is Javascript built dashboard like topCoder platform"
-                  repoLanguage=""
-                  repoName="JS_Job_Genie_Dashboard"
-                  repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard"
-                />
-              </div>
-              <div className="d-inline-block my-3">
-                <ProjectCard
-                  ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4"
-                  ownerName="DaudSamim"
-                  ownerUrl=""
-                  repoDesc="This is Javascript built dashboard like topCoder platform"
-                  repoLanguage=""
-                  repoName="JS_Job_Genie_Dashboard"
-                  repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard"
-                />
-              </div>
-              <div className="d-inline-block my-3">
-                <ProjectCard
-                  ownerImage="https://avatars.githubusercontent.com/u/73527767?v=4"
-                  ownerName="DaudSamim"
-                  ownerUrl=""
-                  repoDesc="This is Javascript built dashboard like topCoder platform"
-                  repoLanguage=""
-                  repoName="JS_Job_Genie_Dashboard"
-                  repoUrls="https://github.com/DaudSamim/JS_Job_Genie_Dashboard"
-                />
-              </div>
+
+
+              {/* <div className="challenge-card-sidebar">
+                <div className="level-or-price">
+                  <div className="text-danger text-right">Level : Easy</div>
+                </div>
+                <div className="top-img">
+                  <img src={'https://picsum.photos/600'} alt="task_logo" className='card-logo' draggable={false} />
+                </div>
+
+              </div> */}
+
+
+
+
             </div>
           </div>
         </div>

@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 type PropsChallenge = {
     title?: string;
     price?: number;
-    date?: string;
+    level?: string;
     tags?: string[];
     imgSrc?: string;
     challengeId?: string;
 }
 
-const ChallengeCard = ({ title, price, date, imgSrc = "https://picsum.photos/200/200", challengeId = 'challenge__1', tags }: PropsChallenge) => {
+const ChallengeCard = ({ title, price, level, imgSrc = "https://picsum.photos/200/200", challengeId = 'challenge__1', tags }: PropsChallenge) => {
     return (
         <Link to={`/challenge/submit/${challengeId}`}>
             <div className="challenge-card py-3 text-light">
@@ -26,12 +26,14 @@ const ChallengeCard = ({ title, price, date, imgSrc = "https://picsum.photos/200
                                 )}
                             </div>
                             <h3 className="challenger-title text-light text-capitalize">{title}</h3>
-                            <div className="date">Ends : {date}</div>
                         </div>
                         <div className="col-md-2 text-md-center text-right">
                             <div className="price-container text-center d-inline-block">
                                 {price &&
                                     <h3 className="price">$ <b> {price}</b></h3>
+                                }
+                                {level &&
+                                    <div className="text-danger">Level : {level}</div>
                                 }
                             </div>
                         </div>

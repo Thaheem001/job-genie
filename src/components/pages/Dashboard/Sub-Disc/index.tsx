@@ -15,11 +15,11 @@ const SubDec = (props: Props) => {
             <>
                 {/* <h1 className="text-center text-light">Submissions / Discussions</h1> */}
                 <p className="text-light">Practice Challenges</p>
-                <ChallengeCard title='Customize color' date='July 05' price={100} tags={['Html', "CSS", "js"]} />
-                <ChallengeCard title='Part time filters' date='July 05' price={100} tags={['Html', "CSS", "js"]} />
+                <ChallengeCard title='Customize color' level='Easy' />
+                <ChallengeCard title='Part time filters' level='Medium' />
                 <p className="text-light">Cash Challenges</p>
-                <ChallengeCard title='Email Recruiters' date='July 05' price={100} tags={['Html', "CSS", "js"]} />
-                <ChallengeCard title='Add ML to improve resumes' date='July 05' price={100} tags={['Html', "CSS", "js"]} />
+                <ChallengeCard title='Email Recruiters' price={100} />
+                <ChallengeCard title='Add ML to improve resumes' price={100} />
                 {/* <Link to={'/challenge/submit'}><ChallengeCard /></Link>
                 <Link to={'/challenge/submit'}><ChallengeCard /></Link>
                 <Link to={'/challenge/submit'}><ChallengeCard /></Link> */}
