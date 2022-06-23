@@ -579,7 +579,7 @@ footer {
   background: #c7cacb;
   position: absolute;
   left: 32px;
-  top: 10px;
+  top: 16px;
 }
 
 .reply-list:before,
@@ -719,6 +719,7 @@ footer {
   font-weight: 700;
   float: left;
   margin-right: 10px;
+  margin-bottom: -2px;
 }
 
 .comment-box .comment-name a {

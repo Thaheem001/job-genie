@@ -9,10 +9,25 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { changeHeading } from '../../../../features/HeaderHeading/HeaderHeadingSlice';
 
-type Props = {};
+type userProfile = {
+    fullName: string;
+    email: string;
+    password: string;
+    enabled: boolean;
+    stripePass: string;
+    avatarImg: string;
+    about: string;
+    profession: string;
+    phone: string;
+    linkedIn: string;
+    portFolio: string;
+    createdAt: string;
+    updatedAt: string;
+    passwordUpdatedAt: string;
+};
 
-const Profile = (props: Props) => {
-    const [userProfile, setUserProfile] = useState<any>(undefined);
+const Profile = () => {
+    const [userProfile, setUserProfile] = useState<userProfile>();
     const [loading, setLoading] = useState<boolean>(true);
     const [open, setOpen] = React.useState(false);
     const [openChangePass, setOpenChangePass] = React.useState(false);

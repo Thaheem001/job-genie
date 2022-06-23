@@ -34,7 +34,7 @@ const HeaderHompage = () => {
   }, []);
 
   return (
-    <header className={`hompage-header ${headerClass && 'header-active'}`}>
+    <header className={`hompage-header text-capitalize ${headerClass && 'header-active'}`}>
       <div className="container-fluid px-md-5">
         <div className="d-flex justify-content-between align-items-center">
           <div className="logoBox">

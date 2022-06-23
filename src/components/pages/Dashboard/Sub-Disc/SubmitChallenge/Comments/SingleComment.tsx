@@ -4,20 +4,15 @@ import CommentInput from "./CommentInput";
 import ReplyComments from "./ReplyComments";
 import { CommentDocument } from "..";
 import CustomTimeAgo from "../../../../../shared/CustomTimeAgo";
+import { useSelector } from "react-redux";
 
 type SingleCommentProp = CommentDocument & {};
 
-const SingleComment = ({
-  comment,
-  createdAt,
-  childId,
-  _id,
-}: SingleCommentProp) => {
+const SingleComment = ({ comment, createdAt, childId, _id, commentedBy }: SingleCommentProp) => {
   const [isVisibleComment, setIsVisibleComment] = useState<boolean>(false);
   const [hasChild, setHasChild] = useState<boolean>(true);
-  const [childComments, setChildComments] = useState<CommentDocument[]>(
-    childId
-  );
+  const [childComments, setChildComments] = useState<CommentDocument[]>();
+  const state: any = useSelector<any>(state => state.UserInfo.userTokken)
 
   const addComment = async (dataToAdd: any) => {
     const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
@@ -25,12 +20,12 @@ const SingleComment = ({
       const commentToAdd = {
         comment: {
           comment: dataToAdd.comment,
-          commentedBy: "62a04fce6fdff23a684c122d",
+          commentedBy: dataToAdd.commentedBy,
         },
         replyToId: _id,
       };
 
-      const dataSnap = await fetch(`${APIURL}/api/replyToComment/`, {
+      const dataSnap = await fetch(`${APIURL}/api/replyToComment`, {
         // Adding method type
         method: "POST",
         // Adding body or contents to send
@@ -42,14 +37,13 @@ const SingleComment = ({
       });
 
       const { data }: any = await dataSnap.json();
-      setChildComments((prev) => [data.addedComment, ...prev]);
+      // setChildComments((prev) => [data.addedComment, ...prev]);
     } catch (error) {
       console.log(error);
     }
 
     setIsVisibleComment(false);
   };
-
   return (
     <>
       <li className={`${hasChild && "has-child"} `}>
@@ -59,11 +53,7 @@ const SingleComment = ({
           {/* Contenedor del Comentario */}
           <div className="comment-box">
             <div className="comment-head">
-              <h6 className="comment-name ">
-                <a href="#" className="d-inline-block">
-                  Test
-                </a>
-              </h6>
+              <h6 className="comment-name ">{commentedBy?.fullName ? commentedBy?.fullName : state?.fullName}</h6>
               <span>
                 <CustomTimeAgo date={createdAt} />
               </span>
@@ -87,10 +77,15 @@ const SingleComment = ({
         {/* Respuestas de los comentarios */}
 
         <ul className="comments-list reply-list">
-          {childComments?.length > 0 &&
-            childComments?.map((item: CommentDocument, index: number) => (
-              <ReplyComments {...item} key={index} />
-            ))}
+          {childId?.length > 0 &&
+            childId?.map((item: CommentDocument, index: number) => {
+              // console.log(item);
+              return (
+                (
+                  <ReplyComments {...item} key={index} userName={state?.fullName} />
+                )
+              )
+            })}
         </ul>
       </li>
       {isVisibleComment && (

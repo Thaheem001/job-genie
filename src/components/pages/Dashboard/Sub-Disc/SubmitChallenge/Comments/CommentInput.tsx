@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import FolderZipIcon from "@mui/icons-material/FolderZip";
 import CommentIcon from '@mui/icons-material/Comment';
+import { useSelector } from "react-redux";
 
 type Props = {
-  addComment: any;
+  addComment: Function;
 };
 
 const CommentInput = ({ addComment = () => { } }: Props) => {
   const [comment, setComment] = useState<string>();
   const [isUpload, setIsUplaod] = useState<string>();
+  const state: any = useSelector<any>(state => state.UserInfo.userTokken)
+  // console.log(state.id);
+
   const handleChange = (e: any) => {
     var files = e.target.files;
     setIsUplaod(files[0]?.name);
@@ -54,7 +58,8 @@ const CommentInput = ({ addComment = () => { } }: Props) => {
             <button name="fileName" type="submit" className="btn-own-input"
               onClick={(e) => {
                 e.preventDefault();
-                addComment({ comment });
+                addComment({ comment: comment, commentedBy: state?.id });
+                setComment('')
               }}
             >Submit</button>
           </div>

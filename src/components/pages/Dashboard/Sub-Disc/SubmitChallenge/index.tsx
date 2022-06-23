@@ -2,21 +2,24 @@ import React, { useEffect, useState } from "react";
 import DashboardLayout from "../../../../layout/DashboardLayout";
 import CommentsHistory from "./Comments";
 import SingleComment from "./Comments/SingleComment";
-import ProfileDetails from "./ProfileDetails";
+import ProfileDetails, { ChallengeTypesSingle } from "./ProfileDetails";
 import CommentInput from "./Comments/CommentInput";
 import { useDispatch } from "react-redux";
 import { changeHeading } from "../../../../../features/HeaderHeading/HeaderHeadingSlice";
+import ChallengeCardOther from "../../Challenges/ChallengeCardOther";
+import { useParams } from "react-router-dom";
 
 export type CommentDocument = {
   _id: string;
   comment: string;
   media?: string;
-  commentedBy: string;
+  commentedBy: any[any];
   childId: CommentDocument[];
   replyCount: number;
   challengeId?: string;
   createdAt: number;
   updatedAt: number;
+  userName?: string;
 };
 
 type Props = {
@@ -24,10 +27,32 @@ type Props = {
 };
 
 const SubmitChallenge = ({ comments = [] }: Props) => {
+  const [chellangedata, setChellangeData] = useState<ChallengeTypesSingle>();
   const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
+  const { id } = useParams();
+
+  // fetch challenge data api 
+  const challengeDataApi = async () => {
+    try {
+      await fetch(`${APIURL}/api/singleChallenge`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          challengeId: id
+        })
+      })
+        .then(res => res.json()).then(data => setChellangeData(data.data))
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const fetchComments = async () => {
     try {
-      const commentsSnap = await fetch(`${APIURL}/api/getChallengeComments`);
+      const commentsSnap = await fetch(`${APIURL}/api/getChallengeComments/${id}`);
       const oldComments = await commentsSnap.json();
 
       setCommentsState(oldComments.data);
@@ -38,7 +63,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
   };
 
   const addComment = async (dataToAdd: any) => {
-    const dataSnap = await fetch(`${APIURL}/api/addComment`, {
+    const dataSnap = await fetch(`${APIURL}/api/addComment/${id}`, {
       method: "POST",
       body: JSON.stringify({
         ...dataToAdd,
@@ -49,6 +74,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
     });
 
     const cmData = await dataSnap.json();
+
 
     const newCommentToAdd = cmData.data.addedComment;
 
@@ -66,17 +92,18 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
 
   useEffect(() => {
     fetchComments();
+    challengeDataApi();
   }, []);
-
   return (
     <DashboardLayout>
       <>
-        {/* <h1 className="text-light text-center">Submit Challenge</h1> */}
         <div className="container-fluid text-light mt-3">
           <div className="row">
             <div className="col-lg-9 ">
               <div className="row">
-                <ProfileDetails />
+                {chellangedata &&
+                  <ProfileDetails {...chellangedata} />
+                }
                 <div className="col-12 my-3">
                   {/* Contenedor Principal */}
                   <div className="comments-container">
@@ -88,9 +115,12 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
                       <CommentsHistory>
                         <>
                           {commentsState?.length > 0 &&
-                            commentsState?.map((comment, key) => (
-                              <SingleComment {...comment} key={key} />
-                            ))}
+                            commentsState?.map((comment, key) => {
+                              return (
+                                <SingleComment {...comment} key={key} />
+                              )
+                            })
+                          }
                         </>
                       </CommentsHistory>
                     )}
@@ -100,21 +130,9 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
             </div>
             <div className="col-3 text-center overflow-auto h-100">
               <h4 className="text-light">Other Challenges</h4>
-
-
-              {/* <div className="challenge-card-sidebar">
-                <div className="level-or-price">
-                  <div className="text-danger text-right">Level : Easy</div>
-                </div>
-                <div className="top-img">
-                  <img src={'https://picsum.photos/600'} alt="task_logo" className='card-logo' draggable={false} />
-                </div>
-
-              </div> */}
-
-
-
-
+              <ChallengeCardOther />
+              <ChallengeCardOther />
+              <ChallengeCardOther />
             </div>
           </div>
         </div>

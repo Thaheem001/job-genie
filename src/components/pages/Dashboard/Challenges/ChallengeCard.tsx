@@ -6,18 +6,18 @@ type PropsChallenge = {
     price?: number;
     level?: string;
     tags?: string[];
-    imgSrc?: string;
-    challengeId?: string;
+    img?: string;
+    _id?: string;
 }
 
-const ChallengeCard = ({ title, price, level, imgSrc = "https://picsum.photos/200/200", challengeId = 'challenge__1', tags }: PropsChallenge) => {
+const ChallengeCard = ({ title, price, level, img, _id = 'challenge__1', tags }: PropsChallenge) => {
     return (
-        <Link to={`/challenge/submit/${challengeId}`}>
+        <Link to={`/challenge/submit/${_id}`}>
             <div className="challenge-card py-3 text-light">
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-md-2 col-6 offset-3 offset-md-0">
-                            <img src={imgSrc} alt="task_logo" className='card-logo' draggable={false} />
+                            <img src={img} alt="task_logo" className='card-logo' draggable={false} />
                         </div>
                         <div className="col-md-8 col-12 mt-4 mt-md-0">
                             <div className="tags d-flex ">

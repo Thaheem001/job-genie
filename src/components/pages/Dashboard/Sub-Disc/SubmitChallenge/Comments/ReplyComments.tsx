@@ -4,7 +4,8 @@ import CustomTimeAgo from "../../../../../shared/CustomTimeAgo";
 
 type ReplyCommentProp = CommentDocument & {};
 
-const ReplyComments = ({ comment, createdAt }: ReplyCommentProp) => {
+const ReplyComments = ({ comment, createdAt, commentedBy, userName }: ReplyCommentProp) => {
+  // console.log(commentedBy?.fullName)
   return (
     <>
       <li>
@@ -13,9 +14,7 @@ const ReplyComments = ({ comment, createdAt }: ReplyCommentProp) => {
         {/* Contenedor del Comentario */}
         <div className="comment-box">
           <div className="comment-head">
-            <h6 className="comment-name ">
-              <a href="https://picsum.photos/200">Test</a>
-            </h6>
+            <h6 className="comment-name ">{commentedBy?.fullName ? commentedBy?.fullName : userName}</h6>
             <span>
               <CustomTimeAgo date={createdAt} />
             </span>

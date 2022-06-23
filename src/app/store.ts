@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import counterReducer from "../features/counter/counterSlice";
 import HeaderHeadingSlice from "../features/HeaderHeading/HeaderHeadingSlice";
+import UserTokkenSlice from "../features/UserTokken/UserTokken";
 
 export const store = configureStore({
   reducer: {
-    // counter: counterReducer,
-    headerHeading: HeaderHeadingSlice
+    UserInfo : UserTokkenSlice,
+    headerHeading: HeaderHeadingSlice,
   },
 });
 

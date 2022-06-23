@@ -11,7 +11,6 @@ import PrivateRoute from "./components/Routes/PrivateRoute";
 import SubDec from "./components/pages/Dashboard/Sub-Disc";
 import Profile from "./components/pages/Dashboard/Profile";
 import Challenges from "./components/pages/Dashboard/Challenges";
-import CashChallenges from "./components/pages/Dashboard/Challenges/Cash";
 import SubmitChallenge from "./components/pages/Dashboard/Sub-Disc/SubmitChallenge";
 import ResetPassword from "./components/pages/ResetPassword";
 import PublicRoute from "./components/Routes/PublicRoute/indes";
@@ -26,22 +25,22 @@ const App = () => {
         <Route path="/" element={<PublicRoute />}>
           <Route path="" element={<HomePage />} />
           <Route path="login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/resetpass/:tokken" element={<ResetPassword />} />
         </Route>
 
-        <Route path="/signup" element={<SignUp />} />
         <Route
           path="/paymentSuccess/:paymentTokken"
           element={<PaymentSuccess />}
         />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/resetpass/:tokken" element={<ResetPassword />} />
         <Route path="/logout" element={<Logout />} />
         {/* Protected Routed  */}
 
         <Route path="/" element={<PrivateRoute />}>
           <Route path="home" element={<DashboardPage />} />
-          <Route path="challenges/practice" element={<Challenges />} />
-          <Route path="challenges/Cash" element={<CashChallenges />} />
+          <Route path="challenges/practice" element={<Challenges type="practice" />} />
+          <Route path="challenges/Cash" element={<Challenges type="cash" />} />
           <Route path="challenge/submit/:id" element={<SubmitChallenge />} />
           <Route path="sub-dic" element={<SubDec />} />
           <Route path="profile" element={<Profile />} />

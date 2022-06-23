@@ -13,14 +13,13 @@ type CustomTimeAgoProps = {
   postfixText?: string;
 };
 
-export default function CustomTimeAgo({
-  prefixText,
-  date,
-  postfixText,
-}: CustomTimeAgoProps) {
+const CustomTimeAgo = ({ prefixText, date, postfixText, }: CustomTimeAgoProps) => {
+  // console.log(date , 'type of date is --->' ,  typeof date)
+  
   return (
     <div>
-      {prefixText} <ReactTimeAgo date={date} locale="en-US" /> {postfixText}
+      {prefixText} <ReactTimeAgo date={new Date(date)} locale="en-US" /> {postfixText}
     </div>
   );
 }
+export default CustomTimeAgo;

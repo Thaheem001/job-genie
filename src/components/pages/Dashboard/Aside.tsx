@@ -38,7 +38,7 @@ const AsideDash = (props: Props) => {
                             <span onClick={dropDownFun}><KeyboardArrowDownIcon /></span>
                             <ul>
                                 <li>
-                                    <NavLink to={'/challenges/practice'}>Practice Phallenge</NavLink>
+                                    <NavLink to={'/challenges/practice'}>Practice Challenge</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to={'/challenges/cash'}>Cash Challenge</NavLink>
