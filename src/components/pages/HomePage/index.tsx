@@ -36,7 +36,8 @@ const HomePage = () => {
                 Our chrome extension will apply you to 100s of jobs a week.
               </h2>
               <span className="d-inline-block mt-2">&</span>
-              <p className="font-weight-bold"> Allow ….. (that sentence is correct and should stay as is) </p>
+              <p className="font-weight-bold"> Allow you to grow your portfolio and contribute to the future of job search software.
+ </p>
             </div>
           </div>
         </section>
