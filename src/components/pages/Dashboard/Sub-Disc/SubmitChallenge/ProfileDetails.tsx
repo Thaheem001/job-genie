@@ -10,6 +10,7 @@ export type ChallengeTypesSingle = {
     technologyStack?: string[];
     type: string;
     desc: string;
+    _id?:string;
 }
 const ProfileDetails = ({ img, title, type, price, level, technologyStack, desc }: ChallengeTypesSingle) => {
 
@@ -37,11 +38,11 @@ const ProfileDetails = ({ img, title, type, price, level, technologyStack, desc 
                     <div className="date">
                         <p className="float-right challenge-type">Challenge Type : <span className="text-capitalize text-danger2">{type}</span></p>
                     </div>
-                    <div className="tags d-flex">
+                    {/* <div className="tags d-flex">
                         {technologyStack &&
                             technologyStack.map((tag, key) => <div className="tag" key={key}>{tag}</div>)
                         }
-                    </div>
+                    </div> */}
 
                     {/* {isUpload &&
                         <div className="Upload-folder-name bg-success d-inline-flex "><FolderZipIcon />{isUpload}</div>

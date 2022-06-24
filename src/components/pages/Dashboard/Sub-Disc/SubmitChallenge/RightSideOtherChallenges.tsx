@@ -4,9 +4,10 @@ import ChallengeCardOther from '../../Challenges/ChallengeCardOther';
 
 type otherChallengeCardProps = {
     challengeType?: string;
+    sameChallengeId?: string;
 }
 
-const RightSideOtherChallenges = ({ challengeType }: otherChallengeCardProps) => {
+const RightSideOtherChallenges = ({ challengeType, sameChallengeId }: otherChallengeCardProps) => {
     const [otherChallenge, setOtherChallenge] = useState<ChallengeTypes[]>();
     const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
 
@@ -22,10 +23,10 @@ const RightSideOtherChallenges = ({ challengeType }: otherChallengeCardProps) =>
     }, [])
     return (
         <>
-            <div className="col-lg-3 text-center overflow-auto h-100">
+            <div className={`col-lg-3 text-center overflow-auto h-100`}>
                 <h4 className="text-light">Other Challenges</h4>
                 <div className="row d-lg-block d-flex">
-                    {otherChallenge && otherChallenge?.filter(filterChallenge => filterChallenge.type === challengeType).map((item, key) => <ChallengeCardOther {...item} key={key} />)}
+                    {otherChallenge && otherChallenge?.filter(filterChallenge => filterChallenge.type === challengeType).map((item, key) => <ChallengeCardOther {...item} key={key} removeItem={item._id == sameChallengeId ? 'd-none' : ''} />)}
                 </div>
             </div>
         </>

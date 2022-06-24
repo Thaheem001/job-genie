@@ -5,10 +5,13 @@ import ReplyComments from "./ReplyComments";
 import { CommentDocument } from "..";
 import CustomTimeAgo from "../../../../../shared/CustomTimeAgo";
 import { useSelector } from "react-redux";
+import UserProfileModal from "./UserProfileModal";
 
-type SingleCommentProp = CommentDocument & {};
+type SingleCommentProp = CommentDocument & {
+  updateState?: any;
+};
 
-const SingleComment = ({ comment, createdAt, childId, _id, commentedBy }: SingleCommentProp) => {
+const SingleComment = ({ comment, createdAt, childId, _id, commentedBy, updateState }: SingleCommentProp) => {
   const [isVisibleComment, setIsVisibleComment] = useState<boolean>(false);
   const [hasChild, setHasChild] = useState<boolean>(true);
   const [childComments, setChildComments] = useState<CommentDocument[]>();
@@ -38,12 +41,17 @@ const SingleComment = ({ comment, createdAt, childId, _id, commentedBy }: Single
 
       const { data }: any = await dataSnap.json();
       // setChildComments((prev) => [data.addedComment, ...prev]);
+      updateState(data?.addedComment);
     } catch (error) {
       console.log(error);
     }
 
     setIsVisibleComment(false);
   };
+  // show user info modal 
+  const [openChangePass, setOpenChangePass] = useState<boolean>(false);
+  const ShowUserModal = () => setOpenChangePass(true);
+  const HideUserModal = () => setOpenChangePass(false);
   return (
     <>
       <li className={`${hasChild && "has-child"} `}>
@@ -53,7 +61,7 @@ const SingleComment = ({ comment, createdAt, childId, _id, commentedBy }: Single
           {/* Contenedor del Comentario */}
           <div className="comment-box">
             <div className="comment-head">
-              <h6 className="comment-name ">{commentedBy?.fullName ? commentedBy?.fullName : state?.fullName}</h6>
+              <h6 className="comment-name pointer" onClick={ShowUserModal}>{commentedBy?.fullName ? commentedBy?.fullName : state?.fullName}</h6>
               <span>
                 <CustomTimeAgo date={createdAt} />
               </span>
@@ -72,6 +80,7 @@ const SingleComment = ({ comment, createdAt, childId, _id, commentedBy }: Single
               </button>
             </div>
             <div className="comment-content">{comment}</div>
+            <UserProfileModal openModal={openChangePass} hideModal={HideUserModal} userInfo={commentedBy} />
           </div>
         </div>
         {/* Respuestas de los comentarios */}

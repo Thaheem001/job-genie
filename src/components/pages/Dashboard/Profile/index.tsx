@@ -275,6 +275,7 @@ const Profile = () => {
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.linkedIn}
                                             name='linkedIn'
+                                            type='url'
                                         />
                                         <TextField
                                             label="Portfolio "
@@ -283,6 +284,7 @@ const Profile = () => {
                                             className='my-2 w-100'
                                             defaultValue={userProfile?.portFolio}
                                             name='portFolio'
+                                            type='url'
                                         />
                                         <TextField
                                             id="outlined-multiline-static"

@@ -30,6 +30,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
   const [chellangeData, setChellangeData] = useState<ChallengeTypesSingle>();
   const [loadingComments, setLoadingComments] = useState<boolean>(true);
   const [commentsState, setCommentsState] = useState<CommentDocument[]>(comments);
+  const [commentsStateRender, setCommentsStateRender] = useState<CommentDocument>();
   const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
   const { id } = useParams();
 
@@ -77,7 +78,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
-    });
+    }).then(res => res.json()).then(resData => console.log(setCommentsStateRender(resData.data?.addedComment)))
   };
 
 
@@ -88,10 +89,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
   useEffect(() => {
     fetchComments();
     challengeDataApi();
-    return () => {
-      setCommentsState([])
-    }
-  }, [id]);
+  }, [id , commentsStateRender]);
 
   return (
     <DashboardLayout>
@@ -116,7 +114,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
                           {commentsState?.length > 0 &&
                             commentsState?.map((comment, key) => {
                               return (
-                                <SingleComment {...comment} key={key} />
+                                <SingleComment {...comment} key={key} updateState={setCommentsStateRender}/>
                               )
                             })
                           }
@@ -127,7 +125,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
                 </div>
               </div>
             </div>
-            <RightSideOtherChallenges challengeType={chellangeData?.type} />
+            <RightSideOtherChallenges challengeType={chellangeData?.type} sameChallengeId={chellangeData?._id}/>
           </div>
         </div>
       </>

@@ -6,9 +6,12 @@ import { CardActionArea, CardActions } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { PropsChallenge } from './ChallengeCard';
 
-export default function ChallengeCardOther({ title, type, price, level, desc, _id }: PropsChallenge) {
+type OtherCardType = PropsChallenge & {
+    removeItem?: string ;
+}
+export default function ChallengeCardOther({ title, type, price, level, desc, _id, removeItem }: OtherCardType) {
     return (
-        <Link to={`/challenge/submit/${_id}`} style={{ maxWidth: '50%' }}>
+        <Link to={`/challenge/submit/${_id}`} style={{ maxWidth: '50%' }} className={removeItem}>
             <Card sx={{ maxWidth: 345, textAlign: 'left', margin: '20px 10px' }}>
                 <CardActionArea>
                     {/* <CardMedia
