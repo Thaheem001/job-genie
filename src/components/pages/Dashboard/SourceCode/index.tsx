@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import ProjectCard from "./ProjectCard";
+import ProjectCard, { ProjectCardRepoType } from "./ProjectCard";
 import { useDispatch } from "react-redux";
 import { changeHeading } from "../../../../features/HeaderHeading/HeaderHeadingSlice";
 import DashboardLayout from "../../../layout/DashboardLayout";
@@ -33,6 +33,25 @@ const SourceCode = (props: Props) => {
       .catch(() => alert("something went wrong"));
   }, []);
 
+  const dummyDate: ProjectCardRepoType = {
+    repoName: 'JobGenie_Extension',
+    repoUrls: 'https://github.com/DaudSamim/JS_Job_Genie_Dashboard',
+    repoDesc: 'This is Javascript built dashboard like topCoder platform',
+    ownerImage: 'https://avatars.githubusercontent.com/u/73527767?v=4',
+    ownerName: 'DaudSamim',
+    ownerUrl: '',
+    repoLanguage: '',
+  }
+  const dummyDate2: ProjectCardRepoType = {
+    repoName: 'JobGenie_ResumeScan_WebApp',
+    repoUrls: 'https://github.com/DaudSamim/JS_Job_Genie_Dashboard',
+    repoDesc: 'This is Javascript built dashboard like topCoder platform',
+    ownerImage: 'https://avatars.githubusercontent.com/u/73527767?v=4',
+    ownerName: 'DaudSamim',
+    ownerUrl: '',
+    repoLanguage: '',
+  }
+
   return (
     <DashboardLayout>
       <Grid
@@ -44,9 +63,14 @@ const SourceCode = (props: Props) => {
         flexWrap="wrap"
       >
         {repoInfo && (
-          <Grid item md={4} sm={6} xs={12}>
-            <ProjectCard {...repoInfo} />
-          </Grid>
+          <>
+            <Grid item md={4} sm={6} xs={12}>
+              <ProjectCard {...dummyDate} />
+            </Grid>
+            <Grid item md={4} sm={6} xs={12}>
+              <ProjectCard {...dummyDate2} />
+            </Grid>
+          </>
         )}
 
       </Grid>

@@ -6,19 +6,20 @@ import { CommentDocument } from "..";
 import CustomTimeAgo from "../../../../../shared/CustomTimeAgo";
 import { useSelector } from "react-redux";
 import UserProfileModal from "./UserProfileModal";
+import FolderZipIcon from '@mui/icons-material/FolderZip';
 
 type SingleCommentProp = CommentDocument & {
   updateState?: any;
 };
 
-const SingleComment = ({ comment, createdAt, childId, _id, commentedBy, updateState }: SingleCommentProp) => {
+const SingleComment = ({ comment, createdAt, childId, _id, commentedBy, updateState, media }: SingleCommentProp) => {
   const [isVisibleComment, setIsVisibleComment] = useState<boolean>(false);
   const [hasChild, setHasChild] = useState<boolean>(true);
   const [childComments, setChildComments] = useState<CommentDocument[]>();
   const state: any = useSelector<any>(state => state.UserInfo.userTokken)
+  const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
 
   const addComment = async (dataToAdd: any) => {
-    const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
     try {
       const commentToAdd = {
         comment: {
@@ -52,6 +53,7 @@ const SingleComment = ({ comment, createdAt, childId, _id, commentedBy, updateSt
   const [openChangePass, setOpenChangePass] = useState<boolean>(false);
   const ShowUserModal = () => setOpenChangePass(true);
   const HideUserModal = () => setOpenChangePass(false);
+
   return (
     <>
       <li className={`${hasChild && "has-child"} `}>
@@ -79,7 +81,16 @@ const SingleComment = ({ comment, createdAt, childId, _id, commentedBy, updateSt
                 <ReplyAllIcon />
               </button>
             </div>
-            <div className="comment-content">{comment}</div>
+            <div className="text-and-file-place">
+              <div className="comment-content position-relative">{comment}
+                <div className="file-dive position-absolute" style={{ top: '8px', right: '8px' }}>{media && <>
+                  <a href={`${APIURL}/${media}`} download={true} target='_blank' className="Upload-folder-name bg-success d-inline-flex ml-3">
+                    <FolderZipIcon />
+                    <span>Download Code</span>
+                  </a>
+                </>}</div>
+              </div>
+            </div>
             <UserProfileModal openModal={openChangePass} hideModal={HideUserModal} userInfo={commentedBy} />
           </div>
         </div>

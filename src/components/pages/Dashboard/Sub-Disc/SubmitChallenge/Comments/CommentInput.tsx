@@ -36,17 +36,18 @@ const CommentInput = ({ addComment = () => { } }: Props) => {
             placeholder="Write Comment or Upload file"
           ></textarea>
           <div className="btn-box d-flex ">
-            <div className="d-flex">
+            <div className="d-flex position-relative mt-3">
+              <small
+                style={{ position: 'absolute', top: "-25px", color: 'red', whiteSpace: 'nowrap', fontWeight: '500' }}
+              >
+                * Please Upload Only Zip File.
+              </small>
               <label htmlFor={randomId}>
                 <UploadFileIcon /> Upload File
               </label>
               <input
-                type="file"
-                name=""
-                id={randomId}
-                style={{ display: "none" }}
-                onChange={(e) => handleChange(e)}
-              />
+                type="file" id={randomId} style={{ display: "none" }} onChange={(e) => handleChange(e)}
+                accept='.zip' />
               {/* attach file  div show */}
               {isUpload && (
                 <div className="Upload-folder-name bg-success d-inline-flex ml-3">

@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 
-type ProjectCardProps = {
+export type ProjectCardRepoType = {
   repoName: string;
   repoUrls: string;
   repoDesc: string;
@@ -26,7 +26,7 @@ const ProjectCard = ({
   repoLanguage = "",
   repoName = "",
   repoUrls = "",
-}: ProjectCardProps) => {
+}: ProjectCardRepoType) => {
   return (
     <Card className="repoCard">
       <CardHeader
@@ -40,7 +40,7 @@ const ProjectCard = ({
           </Avatar>
         }
         title={ownerName}
-        // subheader="June 10, 2022"
+      // subheader="June 10, 2022"
       />
       <CardContent>
         <h1 className="repoName text-center font-weight-bold my-3">
