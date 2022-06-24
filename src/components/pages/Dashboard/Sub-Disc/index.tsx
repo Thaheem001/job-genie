@@ -11,9 +11,9 @@ const SubDec = (props: Props) => {
     const [challengeData, setChallengeData] = useState<ChallengeTypes[]>();
     const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
-    dispatch(changeHeading('Submissions / Discussions'));
 
     useEffect(() => {
+        dispatch(changeHeading('Submissions / Discussions'));
         fetch(`${APIURL}/api/challenges`)
             .then((snap) => snap.json())
             .then((res) => {

@@ -21,9 +21,9 @@ const SourceCode = (props: Props) => {
   const [repoInfo, setRepoInfo] = useState<RepoInfoType>();
   const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
-  dispatch(changeHeading('Source Code'));
 
   useEffect(() => {
+    dispatch(changeHeading('Source Code'));
     fetch(`${APIURL}/api/repo`)
       .then((snap) => snap.json())
       .then((res) => {
@@ -48,7 +48,7 @@ const SourceCode = (props: Props) => {
             <ProjectCard {...repoInfo} />
           </Grid>
         )}
-        
+
       </Grid>
     </DashboardLayout>
   );

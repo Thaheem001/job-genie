@@ -35,7 +35,7 @@ const Profile = () => {
 
     // dispatch redux 
     const dispatch = useDispatch();
-    dispatch(changeHeading('Profile'));
+
 
     // get auth tokken from cookie 
     const cookieKey = process.env.REACT_APP_AUTH_COOKIE;
@@ -153,6 +153,7 @@ const Profile = () => {
     }
 
     useEffect(() => {
+        dispatch(changeHeading('Profile'));
         fetchUserProfile();
     }, []);
 

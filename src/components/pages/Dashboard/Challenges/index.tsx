@@ -20,8 +20,9 @@ const Challenges = ({ type }: ChallengesProps) => {
     const [challengeData, setChallengeData] = useState<ChallengeTypes[]>();
     const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
     const dispatch = useDispatch();
-    dispatch(changeHeading(`${type} Challange`));
+
     useEffect(() => {
+        dispatch(changeHeading(`${type} Challange`));
         fetch(`${APIURL}/api/challenges`)
             .then((snap) => snap.json())
             .then((res) => {
@@ -29,6 +30,8 @@ const Challenges = ({ type }: ChallengesProps) => {
                 // console.log("I got the res here !", res);
             })
             .catch(() => alert("something went wrong"));
+
+        return () => { setChallengeData([]) }
     }, []);
 
 

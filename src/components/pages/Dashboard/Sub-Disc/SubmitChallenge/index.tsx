@@ -6,9 +6,8 @@ import ProfileDetails, { ChallengeTypesSingle } from "./ProfileDetails";
 import CommentInput from "./Comments/CommentInput";
 import { useDispatch } from "react-redux";
 import { changeHeading } from "../../../../../features/HeaderHeading/HeaderHeadingSlice";
-import ChallengeCardOther from "../../Challenges/ChallengeCardOther";
 import { useParams } from "react-router-dom";
-import { ChallengeTypes } from "../../Challenges";
+import RightSideOtherChallenges from "./RightSideOtherChallenges";
 
 export type CommentDocument = {
   _id: string;
@@ -28,10 +27,14 @@ type Props = {
 };
 
 const SubmitChallenge = ({ comments = [] }: Props) => {
-  const [chellangedata, setChellangeData] = useState<ChallengeTypesSingle>();
-  const [otherChallenge, setOtherChallenge] = useState<ChallengeTypes[]>();
+  const [chellangeData, setChellangeData] = useState<ChallengeTypesSingle>();
+  const [loadingComments, setLoadingComments] = useState<boolean>(true);
+  const [commentsState, setCommentsState] = useState<CommentDocument[]>(comments);
   const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
   const { id } = useParams();
+
+  // dispatch update 
+  const dispatch = useDispatch();
 
   // fetch challenge data api 
   const challengeDataApi = async () => {
@@ -51,7 +54,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
       console.log(error);
     }
   }
-
+  // fetch comment api 
   const fetchComments = async () => {
     try {
       const commentsSnap = await fetch(`${APIURL}/api/getChallengeComments/${id}`);
@@ -64,7 +67,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
     setLoadingComments(false);
   };
 
-  // fetch  comment API by challenge id 
+  // fetch Add comment API by challenge id 
   const addComment = async (dataToAdd: any) => {
     await fetch(`${APIURL}/api/addComment/${id}`, {
       method: "POST",
@@ -77,27 +80,19 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
     });
   };
 
-  const [loadingComments, setLoadingComments] = useState<boolean>(true);
 
-  const [commentsState, setCommentsState] = useState<CommentDocument[]>(
-    comments
-  );
-  // dispatch update 
-  const dispatch = useDispatch();
-  dispatch(changeHeading('Submit Challenge'));
+  useEffect(() => {
+    dispatch(changeHeading('Submit Challenge'));
+  }, [])
 
   useEffect(() => {
     fetchComments();
     challengeDataApi();
-    // other challenges api fetch 
-    fetch(`${APIURL}/api/challenges`)
-      .then((snap) => snap.json())
-      .then((res) => {
-        setOtherChallenge(res.data);
-        // console.log("I got the res here !", res);
-      })
-      .catch(() => alert("something went wrong"));
-  }, [id, commentsState]);
+    return () => {
+      setCommentsState([])
+    }
+  }, [id]);
+
   return (
     <DashboardLayout>
       <>
@@ -105,8 +100,8 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
           <div className="row">
             <div className="col-lg-9 ">
               <div className="row">
-                {chellangedata &&
-                  <ProfileDetails {...chellangedata} />
+                {chellangeData &&
+                  <ProfileDetails {...chellangeData} />
                 }
                 <div className="col-12 my-3">
                   {/* Contenedor Principal */}
@@ -132,12 +127,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-3 text-center overflow-auto h-100">
-              <h4 className="text-light">Other Challenges</h4>
-              <div className="row d-lg-block d-flex">
-              {otherChallenge && otherChallenge?.filter(filterChallenge => filterChallenge.type === chellangedata?.type).map((item, key) => <ChallengeCardOther {...item} key={key} />)}
-              </div>
-            </div>
+            <RightSideOtherChallenges challengeType={chellangeData?.type} />
           </div>
         </div>
       </>
