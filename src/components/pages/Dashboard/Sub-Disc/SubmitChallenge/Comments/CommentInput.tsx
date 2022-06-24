@@ -46,7 +46,7 @@ const CommentInput = ({ addComment = () => { } }: Props) => {
                 <UploadFileIcon /> Upload File
               </label>
               <input
-                type="file" id={randomId} style={{ display: "none" }} onChange={(e) => handleChange(e)}
+                type="file" id={randomId} style={{ display: "none" }} onChange={(e) => handleChange(e)} name='media'
                 accept='.zip' />
               {/* attach file  div show */}
               {isUpload && (
