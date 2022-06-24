@@ -70,15 +70,17 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
 
   // fetch Add comment API by challenge id 
   const addComment = async (dataToAdd: any) => {
+    const formData = new FormData();
+
+    formData.append('media', dataToAdd.media)
+    formData.append('comment', dataToAdd.comment)
+    formData.append('commentedBy', dataToAdd.commentedBy)
+
     await fetch(`${APIURL}/api/addComment/${id}`, {
       method: "POST",
-      body: JSON.stringify({
-        ...dataToAdd,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    }).then(res => res.json()).then(resData => console.log(setCommentsStateRender(resData.data?.addedComment)))
+      body: formData,
+    }).then(res => res.json())
+      .then(resData => setCommentsStateRender(resData.data?.addedComment))
   };
 
 
@@ -89,7 +91,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
   useEffect(() => {
     fetchComments();
     challengeDataApi();
-  }, [id , commentsStateRender]);
+  }, [id, commentsStateRender]);
 
   return (
     <DashboardLayout>
@@ -114,7 +116,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
                           {commentsState?.length > 0 &&
                             commentsState?.map((comment, key) => {
                               return (
-                                <SingleComment {...comment} key={key} updateState={setCommentsStateRender}/>
+                                <SingleComment {...comment} key={key} updateState={setCommentsStateRender} />
                               )
                             })
                           }
@@ -125,7 +127,7 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
                 </div>
               </div>
             </div>
-            <RightSideOtherChallenges challengeType={chellangeData?.type} sameChallengeId={chellangeData?._id}/>
+            <RightSideOtherChallenges challengeType={chellangeData?.type} sameChallengeId={chellangeData?._id} />
           </div>
         </div>
       </>

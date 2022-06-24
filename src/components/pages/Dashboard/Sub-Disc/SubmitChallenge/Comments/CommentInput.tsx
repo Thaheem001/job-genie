@@ -11,12 +11,14 @@ type Props = {
 const CommentInput = ({ addComment = () => { } }: Props) => {
   const [comment, setComment] = useState<string>();
   const [isUpload, setIsUplaod] = useState<string>();
+  const [mediaFile, setMediaFile] = useState<File>();
   const state: any = useSelector<any>(state => state.UserInfo.userTokken)
   // console.log(state.id);
 
   const handleChange = (e: any) => {
     var files = e.target.files;
     setIsUplaod(files[0]?.name);
+    setMediaFile(files[0]);
   };
   const randomId = Math.random()
     .toString(36)
@@ -26,7 +28,7 @@ const CommentInput = ({ addComment = () => { } }: Props) => {
   return (
     <div className="input-comment-and-attach-file mt-3">
       <div className="d-flex"><CommentIcon /> <h6 className="text-dark ml-3">Add a comment</h6></div>
-      <form className="position-relative">
+      <form className="position-relative" encType="multipart/form-data">
         <div className="input-container-with-btn ">
           <textarea
             name="msgBox"
@@ -59,8 +61,10 @@ const CommentInput = ({ addComment = () => { } }: Props) => {
             <button name="fileName" type="submit" className="btn-own-input"
               onClick={(e) => {
                 e.preventDefault();
-                addComment({ comment: comment, commentedBy: state?.id });
+                if (comment && comment?.length <= 1) return false;
+                addComment({ comment: comment, commentedBy: state?.id, media: mediaFile });
                 setComment('')
+                setIsUplaod('')
               }}
             >Submit</button>
           </div>

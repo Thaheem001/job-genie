@@ -10,7 +10,6 @@ type Props = {
 
 const UserProfileModal = ({ openModal, hideModal, userInfo }: Props) => {
     const { fullName, linkedIn, portFolio, email } = userInfo;
-    console.log(userInfo)
     const style = {
         position: 'absolute' as 'absolute',
         top: '50%',

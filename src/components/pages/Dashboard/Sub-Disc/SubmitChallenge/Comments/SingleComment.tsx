@@ -88,7 +88,8 @@ const SingleComment = ({ comment, createdAt, childId, _id, commentedBy, updateSt
                     <FolderZipIcon />
                     <span>Download Code</span>
                   </a>
-                </>}</div>
+                </>}
+                </div>
               </div>
             </div>
             <UserProfileModal openModal={openChangePass} hideModal={HideUserModal} userInfo={commentedBy} />
