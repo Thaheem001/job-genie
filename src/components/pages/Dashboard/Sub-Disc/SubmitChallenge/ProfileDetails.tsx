@@ -9,26 +9,33 @@ export type ChallengeTypesSingle = {
     level?: string;
     technologyStack?: string[];
     type: string;
+    desc: string;
 }
-const ProfileDetails = ({ img, title, type, price, level, technologyStack }: ChallengeTypesSingle) => {
+const ProfileDetails = ({ img, title, type, price, level, technologyStack, desc }: ChallengeTypesSingle) => {
 
     return (
         <>
-            <div className="row">
-                <div className="col-3">
+            <div className="row w-100">
+                {/* <div className="col-3">
                     <img src={img} className='w-100 rounded shadow-lg' alt="Challenge-pic" />
-                </div>
-                <div className="col-9">
-                    {price &&
-                        <h3 className="Price text-right">Price : ${price}</h3>
-                    }
-                    {level &&
-                        <h3 className="level text-right text-capitalize text-danger">Level : {level}</h3>
-                    }
-                    <h3 className='Challenge-title'>{title}</h3>
-                    <p className="desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore illum tempora magnam nemo temporibus earum inventore! Blanditiis quo quae laborum nulla quos, enim nam deserunt.</p>
+                </div> */}
+                <div className="col-12">
+                    <div className="row">
+                        <div className="col-md-9">
+                            <h1 className='Challenge-title'>{title}</h1>
+                        </div>
+                        <div className="col-md-3">
+                            {price &&
+                                <h3 className="Price text-right">Price : <span className="text-danger2">${price}</span></h3>
+                            }
+                            {level &&
+                                <h3 className="level text-right text-capitalize ">Level : <span className="text-danger2">{level}</span></h3>
+                            }
+                        </div>
+                    </div>
+                    <p className="desc">{desc}</p>
                     <div className="date">
-                        <p className="float-right challenge-type">Challenge Type : <span className="text-capitalize text-danger">{type}</span></p>
+                        <p className="float-right challenge-type">Challenge Type : <span className="text-capitalize text-danger2">{type}</span></p>
                     </div>
                     <div className="tags d-flex">
                         {technologyStack &&

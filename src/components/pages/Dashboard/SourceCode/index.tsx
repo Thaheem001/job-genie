@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import ProjectCard from "./ProjectCard";
 import { useDispatch } from "react-redux";
 import { changeHeading } from "../../../../features/HeaderHeading/HeaderHeadingSlice";
+import DashboardLayout from "../../../layout/DashboardLayout";
 
 type Props = {};
 
@@ -33,8 +34,7 @@ const SourceCode = (props: Props) => {
   }, []);
 
   return (
-    <>
-      {/* <h1 className="text-center text-light mb-4">Source Code</h1> */}
+    <DashboardLayout>
       <Grid
         spacing={2}
         container
@@ -48,30 +48,9 @@ const SourceCode = (props: Props) => {
             <ProjectCard {...repoInfo} />
           </Grid>
         )}
-
-        {/* <Grid item md={4} sm={6} xs={12} >
-                    <ProjectCard />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12} >
-                    <ProjectCard />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12} >
-                    <ProjectCard />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12} >
-                    <ProjectCard />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12} >
-                    <ProjectCard />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12} >
-                    <ProjectCard />
-                </Grid>
-                <Grid item md={4} sm={6} xs={12} >
-                    <ProjectCard />
-                </Grid> */}
+        
       </Grid>
-    </>
+    </DashboardLayout>
   );
 };
 
