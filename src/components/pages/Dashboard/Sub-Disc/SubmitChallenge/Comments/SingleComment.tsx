@@ -20,24 +20,17 @@ const SingleComment = ({ comment, createdAt, childId, _id, commentedBy, updateSt
   const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
 
   const addComment = async (dataToAdd: any) => {
+    const newFormData = new FormData();
+    newFormData.append('media', dataToAdd.media)
+    newFormData.append('comment', dataToAdd.comment)
+    newFormData.append('commentedBy', dataToAdd.commentedBy)
+    newFormData.append('replyToId', _id)
     try {
-      const commentToAdd = {
-        comment: {
-          comment: dataToAdd.comment,
-          commentedBy: dataToAdd.commentedBy,
-        },
-        replyToId: _id,
-      };
-
       const dataSnap = await fetch(`${APIURL}/api/replyToComment`, {
         // Adding method type
         method: "POST",
         // Adding body or contents to send
-        body: JSON.stringify(commentToAdd),
-        // Adding headers to the request
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
+        body: newFormData
       });
 
       const { data }: any = await dataSnap.json();

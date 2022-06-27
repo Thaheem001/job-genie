@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { TextField, Box, Modal, Button } from '@mui/material';
+import React from 'react'
+import { Box, Modal } from '@mui/material';
 import { ReplyCommentProp } from './ReplyComments';
 
 type Props = {
@@ -9,7 +9,11 @@ type Props = {
 }
 
 const UserProfileModal = ({ openModal, hideModal, userInfo }: Props) => {
-    const { fullName, linkedIn, portFolio, email } = userInfo;
+    // useEffect(() => {
+    //     console.log(userInfo);
+    // }, [])
+
+    // const { fullName, linkedIn, portFolio, email } = userInfo;
     const style = {
         position: 'absolute' as 'absolute',
         top: '50%',
@@ -35,19 +39,19 @@ const UserProfileModal = ({ openModal, hideModal, userInfo }: Props) => {
                     <table className='table table-bordered font-weight-bold'>
                         <tr>
                             <td>Full Name</td>
-                            <td>{fullName}</td>
+                            <td>{userInfo?.fullName}</td>
                         </tr>
                         <tr>
                             <td>Linked In</td>
-                            <td>{linkedIn ? <><a className='text-dark' href={linkedIn} target='_blank' title={linkedIn}>Linked In Link</a></> : 'Profile Not Update '}</td>
+                            <td>{userInfo?.linkedIn ? <><a className='text-dark' href={userInfo?.linkedIn} target='_blank' title={userInfo?.linkedIn}>Linked In Link</a></> : 'Profile Not Update '}</td>
                         </tr>
                         <tr>
                             <td>PortFolio</td>
-                            <td>{portFolio ? <><a className='text-dark' href={portFolio} target='_blank' title={linkedIn}>PortFolio Link</a></> : "Profile Not Update"}</td>
+                            <td>{userInfo?.portFolio ? <><a className='text-dark' href={userInfo?.portFolio} target='_blank' title={userInfo?.linkedIn}>PortFolio Link</a></> : "Profile Not Update"}</td>
                         </tr>
                         <tr>
                             <td>Email Address</td>
-                            <td>{email}</td>
+                            <td>{userInfo?.email}</td>
                         </tr>
                     </table>
                 </Box>

@@ -29,7 +29,7 @@ const ReplyComments = ({ comment, createdAt, commentedBy, userName, media }: Rep
             <i className="fa fa-reply" />
             <i className="fa fa-heart" />
           </div>
-          <div className="comment-content">{comment}
+          <div className="comment-content position-relative">{comment}
             <div className="file-dive position-absolute" style={{ top: '8px', right: '8px' }}>{media && <>
               <a href={`${APIURL}/${media}`} download={true} target='_blank' className="Upload-folder-name bg-success d-inline-flex ml-3">
                 <FolderZipIcon />

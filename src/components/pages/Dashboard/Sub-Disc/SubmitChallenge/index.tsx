@@ -61,6 +61,9 @@ const SubmitChallenge = ({ comments = [] }: Props) => {
       const commentsSnap = await fetch(`${APIURL}/api/getChallengeComments/${id}`);
       const oldComments = await commentsSnap.json();
 
+      // console.log(oldComments?.data)
+      // return false;
+
       setCommentsState(oldComments.data);
     } catch (error) {
       console.log(error);
