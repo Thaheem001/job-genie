@@ -42,14 +42,14 @@ const CommentInput = ({ addComment = () => { } }: Props) => {
               <small
                 style={{ position: 'absolute', top: "-25px", color: 'red', whiteSpace: 'nowrap', fontWeight: '500' }}
               >
-                * Please Upload Only Zip File.
+                * Please Upload Only Zip & PNG/JPEG File.
               </small>
               <label htmlFor={randomId}>
                 <UploadFileIcon /> Upload File
               </label>
               <input
                 type="file" id={randomId} style={{ display: "none" }} onChange={(e) => handleChange(e)} name='media'
-                accept='.zip' />
+                accept='.zip , .png , .jpeg' />
               {/* attach file  div show */}
               {isUpload && (
                 <div className="Upload-folder-name bg-success d-inline-flex ml-3">
