@@ -37,7 +37,7 @@ const HomePage = () => {
               </h2>
               <span className="d-inline-block mt-2">&</span>
               <p className="font-weight-bold"> Allow you to grow your portfolio and contribute to the future of job search software.
- </p>
+              </p>
             </div>
           </div>
         </section>
@@ -68,9 +68,9 @@ const HomePage = () => {
                 <iframe
                   width="100%"
                   height="100%"
-                  style={{ border: "none" }}
-                  src="https://www.youtube.com/embed/oQX39Q3Lazs"
-                  title="YouTube video player"
+                  style={{ border: "none", minHeight: '310px' }}
+                  src="https://www.youtube.com/embed/dASen4CRQug"
+                  title="video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen={true}
                 ></iframe>
@@ -87,13 +87,13 @@ const HomePage = () => {
             <div className="row">
               <div className="col-md-5 d-flex align-items-center">
                 <img
-                  src="https://picsum.photos/600/300"
+                  src="/Img/mainPage.png"
                   className="img-fluid styled-img"
                   alt="Challange_Image"
                 />
               </div>
               <div className="col-md-7 pl-5 ">
-              <h3 className="text-light mt-md-3">Access to our source code & developer community.</h3>
+                <h3 className="text-light mt-md-3">Access to our source code & developer community.</h3>
                 <ul className="content-list">
                   <li>Improve your portfolio & Javascript skills by completing challenges.</li>
                   <li>Win cash prizes ($500+)</li>
@@ -122,7 +122,7 @@ const HomePage = () => {
                 </Link>
               </div>
               <div className="col-lg-5 offset-lg-1 mt-4 mt-lg-0 text-center text-lg-left">
-                <h2 className="">Price $175 membership for life.</h2>
+                <h2 className="">Price $199.99 membership for life.</h2>
                 <ul className="mt-4 list-unstyled">
                   <li>The best part is you can get your money back.</li>
                   <li>For each person you refer, you receive $5 dollars.</li>
