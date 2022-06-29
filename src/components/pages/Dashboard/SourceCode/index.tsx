@@ -18,39 +18,32 @@ type RepoInfoType = {
 };
 
 const SourceCode = (props: Props) => {
-  const [repoInfo, setRepoInfo] = useState<RepoInfoType>();
-  const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(changeHeading('Source Code'));
-    fetch(`${APIURL}/api/repo`)
-      .then((snap) => snap.json())
-      .then((res) => {
-        setRepoInfo(res.data);
-        // console.log("I got the res here !", res);
-      })
-      .catch(() => alert("something went wrong"));
   }, []);
 
-  const dummyDate: ProjectCardRepoType = {
-    repoName: 'JobGenie_Extension',
-    repoUrls: 'https://github.com/DaudSamim/JS_Job_Genie_Dashboard',
-    repoDesc: 'This is Javascript built dashboard like topCoder platform',
-    ownerImage: 'https://avatars.githubusercontent.com/u/73527767?v=4',
-    ownerName: 'DaudSamim',
-    ownerUrl: '',
-    repoLanguage: '',
-  }
-  const dummyDate2: ProjectCardRepoType = {
-    repoName: 'JobGenie_ResumeScan_WebApp',
-    repoUrls: 'https://github.com/DaudSamim/JS_Job_Genie_Dashboard',
-    repoDesc: 'This is Javascript built dashboard like topCoder platform',
-    ownerImage: 'https://avatars.githubusercontent.com/u/73527767?v=4',
-    ownerName: 'DaudSamim',
-    ownerUrl: '',
-    repoLanguage: '',
-  }
+  const dummyData: ProjectCardRepoType[] = [
+    {
+      repoName: 'JobGenie-Extension',
+      repoUrls: 'https://github.com/JobGenie/JobGenie-Extension',
+      repoDesc: 'This is Javascript built dashboard like topCoder platform',
+      ownerImage: 'https://avatars.githubusercontent.com/u/73527767?v=4',
+      ownerName: 'JobGenie',
+      ownerUrl: '',
+      repoLanguage: '',
+    },
+    {
+      repoName: 'JobGenie_ResumeScan',
+      repoUrls: 'https://github.com/JobGenie/JobGenie_ResumeScan',
+      repoDesc: 'This is Javascript built dashboard like topCoder platform',
+      ownerImage: 'https://avatars.githubusercontent.com/u/73527767?v=4',
+      ownerName: 'JobGenie',
+      ownerUrl: '',
+      repoLanguage: '',
+    },
+  ]
 
   return (
     <DashboardLayout>
@@ -62,17 +55,15 @@ const SourceCode = (props: Props) => {
         alignItems="flex-start"
         flexWrap="wrap"
       >
-        {repoInfo && (
-          <>
-            <Grid item md={4} sm={6} xs={12}>
-              <ProjectCard {...dummyDate} />
-            </Grid>
-            <Grid item md={4} sm={6} xs={12}>
-              <ProjectCard {...dummyDate2} />
-            </Grid>
-          </>
-        )}
-
+        {dummyData && dummyData.map((repo, key) => {
+          return (
+            <>
+              <Grid item md={4} sm={6} xs={12}>
+                <ProjectCard {...repo} key={key} />
+              </Grid>
+            </>
+          )
+        })}
       </Grid>
     </DashboardLayout>
   );
