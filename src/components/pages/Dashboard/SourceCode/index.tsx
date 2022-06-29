@@ -28,7 +28,7 @@ const SourceCode = (props: Props) => {
     {
       repoName: 'JobGenie-Extension',
       repoUrls: 'https://github.com/JobGenie/JobGenie-Extension',
-      repoDesc: 'This is Javascript built dashboard like topCoder platform',
+      repoDesc: '',
       ownerImage: 'https://avatars.githubusercontent.com/u/73527767?v=4',
       ownerName: 'JobGenie',
       ownerUrl: '',
@@ -37,7 +37,7 @@ const SourceCode = (props: Props) => {
     {
       repoName: 'JobGenie_ResumeScan',
       repoUrls: 'https://github.com/JobGenie/JobGenie_ResumeScan',
-      repoDesc: 'This is Javascript built dashboard like topCoder platform',
+      repoDesc: '',
       ownerImage: 'https://avatars.githubusercontent.com/u/73527767?v=4',
       ownerName: 'JobGenie',
       ownerUrl: '',
