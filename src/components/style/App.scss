@@ -169,7 +169,8 @@ body {
         padding: 40px 30px;
         color: #fff;
         @media (max-width: 420px) {
-          padding: 30px 10px;
+          padding: 20px 10px 25px;
+          margin: 10px auto 0;
           h3,
           h2 {
             font-size: 24px;
@@ -772,7 +773,7 @@ footer {
  ========================*/
 @media only screen and (max-width: 766px) {
   .comments-container {
-    width: 480px;
+    width: 100%;
   }
 
   .comments-list .comment-box {
@@ -964,4 +965,7 @@ footer {
 }
 .pointer {
   cursor: pointer !important;
+}
+.align-items-center{
+  align-items: center;
 }

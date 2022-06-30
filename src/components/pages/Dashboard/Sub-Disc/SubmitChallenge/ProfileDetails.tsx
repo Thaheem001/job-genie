@@ -10,9 +10,13 @@ export type ChallengeTypesSingle = {
     technologyStack?: string[];
     type: string;
     desc: string;
-    _id?:string;
+    _id?: string;
 }
 const ProfileDetails = ({ img, title, type, price, level, technologyStack, desc }: ChallengeTypesSingle) => {
+
+    let newLineText = desc.slice(desc.indexOf("Deadline"), desc.length);
+    let newDesc = desc.replace(newLineText, '');
+
 
     return (
         <>
@@ -34,7 +38,8 @@ const ProfileDetails = ({ img, title, type, price, level, technologyStack, desc 
                             }
                         </div>
                     </div>
-                    <p className="desc">{desc}</p>
+                    <p className="desc mb-0">{newDesc}</p>
+                    <p className="desc text-danger">{newLineText}</p>
                     <div className="date">
                         <p className="float-right challenge-type">Challenge Type : <span className="text-capitalize text-danger2">{type}</span></p>
                     </div>

@@ -37,15 +37,15 @@ const CommentInput = ({ addComment = () => { } }: Props) => {
             onChange={(e) => setComment(e.target.value)}
             placeholder="Write Comment or Upload file"
           ></textarea>
-          <div className="btn-box d-flex ">
+          <div className="btn-box d-flex align-items-center flex-wrap">
             <div className="d-flex position-relative mt-3">
               <small
-                style={{ position: 'absolute', top: "-25px", color: 'red', whiteSpace: 'nowrap', fontWeight: '500' }}
+                style={{ position: 'absolute', top: "-30px", color: 'red', whiteSpace: 'nowrap', fontWeight: '500' }}
               >
                 * Please Upload Only Zip & PNG/JPEG File.
               </small>
               <label htmlFor={randomId}>
-                <UploadFileIcon /> Upload File
+                <UploadFileIcon /> <span className='d-none d-md-inline-block'>Upload File</span>
               </label>
               <input
                 type="file" id={randomId} style={{ display: "none" }} onChange={(e) => handleChange(e)} name='media'
@@ -58,7 +58,7 @@ const CommentInput = ({ addComment = () => { } }: Props) => {
                 </div>
               )}
             </div>
-            <button name="fileName" type="submit" className="btn-own-input"
+            <button name="fileName" type="submit" className="btn-own-input mt-3"
               onClick={(e) => {
                 e.preventDefault();
                 if (comment && comment?.length <= 1) return false;

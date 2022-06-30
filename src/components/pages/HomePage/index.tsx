@@ -48,7 +48,7 @@ const HomePage = () => {
                 JobGenie Devs is the first community of software developers
                 dedicated to making the job search easier.
               </h1>
-              <h3 className="text-center text-light w-100 mb-md-4">Membership Privileges Include:</h3>
+              <h3 className="text-center text-light w-100 mb-md-4 my-4 my-md-0">Membership Privileges Include:</h3>
               <div className="col-xl-7 my-md-5">
                 <h3 className="text-light">Lifetime access to JobGenie Developed software:</h3>
                 <ul className="content-list">
@@ -80,12 +80,12 @@ const HomePage = () => {
         </section>
         <h2 className="text-light text-center">+</h2>
         <section className="developer-code">
-          <div className="container py-5">
+          <div className="container pt-5 ">
             {/* <h2 className="text-light text-center text-shadow mb-5">
               Access to our source code & developer community
             </h2> */}
             <div className="row">
-              <div className="col-md-5 d-flex align-items-center">
+              <div className="col-md-5 d-flex align-items-center mb-4 mb-md-0">
                 <img
                   src="/Img/mainPage.png"
                   className="img-fluid styled-img"
