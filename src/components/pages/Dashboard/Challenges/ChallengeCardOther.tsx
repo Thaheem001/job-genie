@@ -11,7 +11,7 @@ type OtherCardType = PropsChallenge & {
 }
 export default function ChallengeCardOther({ title, type, price, level, desc, _id, removeItem }: OtherCardType) {
     return (
-        <Link to={`/challenge/submit/${_id}`} style={{ maxWidth: '50%' }} className={removeItem}>
+        <Link to={`/challenge/submit/${_id}`} className={removeItem}>
             <Card sx={{ maxWidth: 345, textAlign: 'left', margin: '20px 10px' }}>
                 <CardActionArea>
                     {/* <CardMedia
