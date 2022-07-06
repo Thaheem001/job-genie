@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import HomePage from "./components/pages/HomePage";
 import "../src/components/style/App.scss";
 import Login from "./components/pages/Login";
@@ -15,6 +20,8 @@ import ResetPassword from "./components/pages/ResetPassword";
 import PublicRoute from "./components/Routes/PublicRoute/indes";
 import Logout from "./components/layout/Logout";
 import SourceCode from "./components/pages/Dashboard/SourceCode";
+import UserListingPage from "./components/pages/Admin/UserListing";
+import AdminRoute from "./components/Routes/AdminRoute";
 
 // scrol to top when change
 const ScrollToTop = () => {
@@ -22,7 +29,7 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
-  return <></>
+  return <></>;
 };
 
 const App = () => {
@@ -48,11 +55,18 @@ const App = () => {
 
         <Route path="/" element={<PrivateRoute />}>
           <Route path="home" element={<SourceCode />} />
-          <Route path="challenges/practice" element={<Challenges type="practice" />} />
+          <Route
+            path="challenges/practice"
+            element={<Challenges type="practice" />}
+          />
           <Route path="challenges/Cash" element={<Challenges type="cash" />} />
           <Route path="challenge/submit/:id" element={<SubmitChallenge />} />
           <Route path="sub-dic" element={<SubDec />} />
           <Route path="profile" element={<Profile />} />
+        </Route>
+
+        <Route path="/admin" element={<AdminRoute />}>
+          <Route path="userlisting" element={<UserListingPage />} />
         </Route>
       </Routes>
     </Router>

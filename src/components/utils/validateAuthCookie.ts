@@ -1,9 +1,12 @@
 import Cookie from "js-cookie";
 
-export const validateAuthCookie = async () => {
+export const validateAuthCookie = async (verifyForAdmin: boolean = false) => {
   const cookieKey = process.env.REACT_APP_AUTH_COOKIE;
   const authTokken = Cookie.get(cookieKey || "nothing");
-  const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
+  const APIURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3001"
+      : process.env.REACT_APP_API_URL;
 
   // console.log(authTokken)
 
@@ -13,11 +16,14 @@ export const validateAuthCookie = async () => {
     return false;
   }
 
-  const res = await fetch(`${APIURL}/api/verifyAuth`, {
-    method: "post",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ authTokken }),
-  });
+  const res = await fetch(
+    `${APIURL}/api/verifyAuth${verifyForAdmin ? "Admin" : ""}`,
+    {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ authTokken }),
+    }
+  );
 
   const resObj = await res.json();
 
@@ -25,7 +31,6 @@ export const validateAuthCookie = async () => {
 
   if (res.status !== 200) {
     throw new Error(resObj.error);
-
   }
 
   return true;
