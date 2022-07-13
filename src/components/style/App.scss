@@ -966,6 +966,29 @@ footer {
 .pointer {
   cursor: pointer !important;
 }
-.align-items-center{
+.align-items-center {
   align-items: center;
+}
+
+.userListing {
+  border: 5px solid #000;
+  border-radius: 30px;
+  overflow: hidden;
+  background: url(../../../public/Img/card-img.svg) $left-aside-box;
+  .css-1fw5qro-MuiPaper-root {
+    background-color: transparent;
+    td {
+      color: #fff;
+    }
+    .css-y8ay40-MuiTableCell-root {
+      background-color: $main-theme-color;
+      color: #fff;
+    }
+  }
+  .css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar,
+  .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon,
+  .css-zylse7-MuiButtonBase-root-MuiIconButton-root.Mui-disabled,
+  .css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon {
+    color: #fff;
+  }
 }

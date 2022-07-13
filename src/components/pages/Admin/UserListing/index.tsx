@@ -14,15 +14,15 @@ import { changeHeading } from "../../../../features/HeaderHeading/HeaderHeadingS
 
 interface Column {
   id:
-    | "fullName"
-    | "email"
-    | "enabled"
-    | "profession"
-    | "phone"
-    | "linkedIn"
-    | "portFolio"
-    | "createdAt"
-    | "isAdmin";
+  | "fullName"
+  | "email"
+  | "enabled"
+  | "profession"
+  | "phone"
+  | "linkedIn"
+  | "portFolio"
+  | "createdAt"
+  | "isAdmin";
   label: string;
   minWidth?: number;
   align?: "right";
@@ -156,7 +156,7 @@ const UserListingPage = (props: Props) => {
   return (
     <AdminLayout>
       <>
-        <div>
+        <div className="userListing">
           <Paper sx={{ width: "100%", overflow: "hidden" }}>
             <TableContainer sx={{ maxHeight: 440 }}>
               <Table stickyHeader aria-label="sticky table">
