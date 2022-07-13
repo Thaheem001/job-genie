@@ -16,7 +16,6 @@ interface Column {
   id:
     | "fullName"
     | "email"
-    | "enabled"
     | "profession"
     | "phone"
     | "linkedIn"
@@ -32,11 +31,7 @@ interface Column {
 const columns: readonly Column[] = [
   { id: "fullName", label: "Name", minWidth: 170 },
   { id: "email", label: "Email", minWidth: 100 },
-  {
-    id: "enabled",
-    label: "Enabled",
-    minWidth: 170,
-  },
+
   {
     id: "profession",
     label: "Profession",
@@ -67,7 +62,7 @@ const columns: readonly Column[] = [
 interface Data {
   fullName: string;
   email: string;
-  enabled: string;
+
   profession: string;
   phone: string;
   linkedIn: string;
@@ -79,7 +74,7 @@ interface Data {
 function createData(
   fullName: string,
   email: string,
-  enabled: string,
+
   profession: string,
   phone: string,
   linkedIn: string,
@@ -90,7 +85,7 @@ function createData(
   return {
     fullName,
     email,
-    enabled,
+
     profession,
     phone,
     linkedIn,
@@ -135,7 +130,6 @@ const UserListingPage = (props: Props) => {
             createData(
               item.fullName,
               item.email,
-              item.enabled ? "Yes" : "No",
               item.profession ? item.profession : "Not updated",
               item.phone ? item.phone : "Not updated",
               item.linkedIn ? item.linkedIn : "Not updated",

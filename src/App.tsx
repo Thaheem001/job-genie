@@ -66,7 +66,7 @@ const App = () => {
         </Route>
 
         <Route path="/admin" element={<AdminRoute />}>
-          <Route path="userlisting" element={<UserListingPage />} />
+          <Route path="" element={<UserListingPage />} />
         </Route>
       </Routes>
     </Router>

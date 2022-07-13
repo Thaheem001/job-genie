@@ -10,7 +10,7 @@ type AdminLayoutProps = {
 const adminMenu = [
   {
     hasChildMenu: false,
-    data: { link: "/admin/userlisting", heading: "User Listing" },
+    data: { link: "/admin", heading: "User Listing" },
   },
 ];
 
