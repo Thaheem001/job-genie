@@ -33,10 +33,10 @@ const HomePage = () => {
           <div className="project-detail-sec">
             <div className="">
               <h2 className="">
-                Our chrome extension will apply you to 100s of jobs a week.
+                Earn Money and gain experience while you look for a job!
               </h2>
               <span className="d-inline-block mt-2">&</span>
-              <p className="font-weight-bold"> Allow you to grow your portfolio and contribute to the future of job search software.
+              <p className="font-weight-bold"> Apply 100s of jobs with just a click of button.
               </p>
             </div>
           </div>
@@ -122,7 +122,7 @@ const HomePage = () => {
                 </Link>
               </div>
               <div className="col-lg-5 offset-lg-1 mt-4 mt-lg-0 text-center text-lg-left">
-                <h2 className="">Price $199.99 membership for life.</h2>
+                <h2 className="">Price <del>$199.99</del> $49.99 membership for limited time only.</h2>
                 <ul className="mt-4 list-unstyled">
                   <li>The best part is you can get your money back.</li>
                   <li>For each person you refer, you receive $5 dollars.</li>
