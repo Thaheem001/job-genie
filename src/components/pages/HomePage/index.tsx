@@ -36,7 +36,8 @@ const HomePage = () => {
                 Earn Money and gain experience while you look for a job!
               </h2>
               <span className="d-inline-block mt-2">&</span>
-              <p className="font-weight-bold"> Apply 100s of jobs with just a click of button.
+              <p className="font-weight-bold">
+                Apply to 100s of jobs a week with just the click of a button.
               </p>
             </div>
           </div>
@@ -48,13 +49,18 @@ const HomePage = () => {
                 JobGenie Devs is the first community of software developers
                 dedicated to making the job search easier.
               </h1>
-              <h3 className="text-center text-light w-100 mb-md-4 my-4 my-md-0">Membership Privileges Include:</h3>
+              <h3 className="text-center text-light w-100 mb-md-4 my-4 my-md-0">
+                Membership Privileges Include:
+              </h3>
               <div className="col-xl-7 my-md-5">
-                <h3 className="text-light">Lifetime access to JobGenie Developed software:</h3>
+                <h3 className="text-light">
+                  Lifetime access to JobGenie Developed software:
+                </h3>
                 <ul className="content-list">
                   <li>Chrome extension that applies to jobs for you</li>
-                  <li>Web app that will scan your resume and tell you how compatible it is with different job
-                    descriptions.
+                  <li>
+                    Web app that will scan your resume and tell you how
+                    compatible it is with different job descriptions.
                   </li>
                   <PrimaryButton
                     to="/signup"
@@ -68,7 +74,7 @@ const HomePage = () => {
                 <iframe
                   width="100%"
                   height="100%"
-                  style={{ border: "none", minHeight: '310px' }}
+                  style={{ border: "none", minHeight: "310px" }}
                   src="https://www.youtube.com/embed/dASen4CRQug"
                   title="video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -93,9 +99,14 @@ const HomePage = () => {
                 />
               </div>
               <div className="col-md-7 pl-5 ">
-                <h3 className="text-light mt-md-3">Access to our source code & developer community.</h3>
+                <h3 className="text-light mt-md-3">
+                  Access to our source code & developer community.
+                </h3>
                 <ul className="content-list">
-                  <li>Improve your portfolio & Javascript skills by completing challenges.</li>
+                  <li>
+                    Improve your portfolio & Javascript skills by completing
+                    challenges.
+                  </li>
                   <li>Win cash prizes ($500+)</li>
                 </ul>
               </div>
@@ -122,7 +133,10 @@ const HomePage = () => {
                 </Link>
               </div>
               <div className="col-lg-5 offset-lg-1 mt-4 mt-lg-0 text-center text-lg-left">
-                <h2 className="">Price <del>$199.99</del> $49.99 membership for limited time only.</h2>
+                <h2 className="">
+                  Price <del>$199.99</del> $49.99 for lifetime membership.
+                  (Limited time only) only.
+                </h2>
                 <ul className="mt-4 list-unstyled">
                   <li>The best part is you can get your money back.</li>
                   <li>For each person you refer, you receive $5 dollars.</li>
