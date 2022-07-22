@@ -1,19 +1,33 @@
-import React from "react";
-import { Avatar, CssBaseline, TextField, Box, Typography, Container, Grid } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Avatar,
+  CssBaseline,
+  TextField,
+  Box,
+  Typography,
+  Container,
+  Grid,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import HomeLayout from "../../layout/HomeLayout";
+import ScreenLoader from "../../shared/ScreenLoader";
 import toast from "react-hot-toast";
 
 const ForgotPassword = () => {
-
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
+    const APIURL =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3001"
+        : process.env.REACT_APP_API_URL;
 
-    if (data.get("email") === ' ' || !data.get("email")) {
-      toast.error('Please fill Emty Field')
+    if (data.get("email") === " " || !data.get("email")) {
+      toast.error("Please fill Emty Field");
+      setLoading(false);
       return false;
     } else {
       fetch(`${APIURL}/api/createAndSendResetPasswordUrl`, {
@@ -36,10 +50,10 @@ const ForgotPassword = () => {
           }
           console.log(data);
         })
-        .catch((err) => console.log(err, 'errorr'))
-    };
-
-  }
+        .catch((err) => console.log(err, "errorr"))
+        .finally(() => setLoading(false));
+    }
+  };
 
   return (
     <HomeLayout>
@@ -85,6 +99,7 @@ const ForgotPassword = () => {
             </Box>
           </Box>
         </Container>
+        <ScreenLoader isVisible={loading} />
       </div>
     </HomeLayout>
   );
