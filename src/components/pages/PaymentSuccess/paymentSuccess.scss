@@ -1,0 +1,18 @@
+.paymentSuccess {
+  &__modalContainer {
+    &__closeBtn {
+      background: none;
+      border: 1px solid red;
+      border-radius: 2rem;
+      padding: 4px 5px;
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      transition: all 1s;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}
