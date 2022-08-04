@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import HomeLayout from "../../layout/HomeLayout";
 import ScreenLoader from "../../shared/ScreenLoader";
 import initializeStripe from "../../utils/initializeStripe";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const [checkBoxVal, setCheckBoxval] = useState<boolean>(true);
@@ -23,19 +23,46 @@ const SignUp = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const APIURL = process.env.NODE_ENV === "development" ? "http://localhost:3001" : process.env.REACT_APP_API_URL;
+    const APIURL =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3001"
+        : process.env.REACT_APP_API_URL;
 
     setIsVisible(true);
     try {
+      const promoCodeValue = data.get("promoCode")?.toString().trim();
+      let discount = 0;
+      let promoMail = "";
+
+      if (promoCodeValue && promoCodeValue !== "") {
+        const verifiedPromo = await fetch(
+          `${APIURL}/api/verifyPromoCode/${promoCodeValue}`
+        );
+
+        if (verifiedPromo?.ok !== true) {
+          throw new Error("Promo Code not found!");
+        }
+
+        const promoCodeData = await verifiedPromo.json();
+
+        discount = promoCodeData.data.discount || 0;
+        promoMail = promoCodeData.data.email || "";
+      }
+
       const res = await fetch(`${APIURL}/api/paynow`, {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fullName: data.get("fullName"),
           email: data.get("email"),
+          discount,
+          promoMail,
         }),
       });
       const resObj = await res.json();
+
+      console.log(resObj);
+
       if (resObj.status !== "success") {
         throw new Error(resObj.error);
       }
@@ -43,9 +70,8 @@ const SignUp = () => {
       const stripe = await initializeStripe();
       stripe?.redirectToCheckout({ sessionId: resObj.stripeId });
     } catch (error: any) {
-      console.log(error)
+      console.log(error);
       toast.error(error.toString());
-
     }
     setIsVisible(false);
   };
@@ -94,6 +120,15 @@ const SignUp = () => {
                     label="Email Address"
                     name="email"
                     autoComplete="email"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    id="promoCode"
+                    label="Promo Code"
+                    name="promoCode"
+                    autoComplete="promo-code"
                   />
                 </Grid>
                 <Grid item xs={12}>

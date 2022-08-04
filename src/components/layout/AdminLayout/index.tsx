@@ -12,6 +12,10 @@ const adminMenu = [
     hasChildMenu: false,
     data: { link: "/admin", heading: "User Listing" },
   },
+  {
+    hasChildMenu: false,
+    data: { link: "/admin/promocodes", heading: "Promocode Listing" },
+  },
 ];
 
 const AdminLayout = ({ children }: AdminLayoutProps) => {

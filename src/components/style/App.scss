@@ -970,7 +970,8 @@ footer {
   align-items: center;
 }
 
-.userListing {
+.userListing,
+.primaryTable {
   border: 5px solid #000;
   border-radius: 30px;
   overflow: hidden;
@@ -992,5 +993,11 @@ footer {
     p {
       margin-bottom: 0px;
     }
+  }
+}
+
+.promoCodeSection {
+  .createNewAction {
+    text-align: right;
   }
 }
