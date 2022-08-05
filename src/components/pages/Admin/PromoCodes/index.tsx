@@ -21,10 +21,9 @@ interface Column {
     | "email"
     | "discount"
     | "tototalSignedUpUsers"
-    | "totalPaidUsersForPromo"
     | "totalAmount"
-    | "totalAmmountPaid"
-    | "totalAmmountRemaining"
+    | "totalPaidAmount"
+    | "totalAmountRemaining"
     | "enabled";
   label: string;
   minWidth?: number;
@@ -41,11 +40,7 @@ const columns: readonly Column[] = [
     label: "Discount",
     minWidth: 170,
   },
-  {
-    id: "totalPaidUsersForPromo",
-    label: "PaidUsers",
-    minWidth: 170,
-  },
+
   {
     id: "tototalSignedUpUsers",
     label: "TotalUsers",
@@ -57,12 +52,12 @@ const columns: readonly Column[] = [
     minWidth: 170,
   },
   {
-    id: "totalAmmountPaid",
+    id: "totalPaidAmount",
     label: "Total Amount Paid",
     minWidth: 170,
   },
   {
-    id: "totalAmmountRemaining",
+    id: "totalAmountRemaining",
     label: "Total Amount Remaining",
     minWidth: 170,
   },
@@ -79,11 +74,10 @@ interface PromoCodeInterface {
   email: string;
   discount: number;
   tototalSignedUpUsers: number;
-  totalPaidUsersForPromo: number;
+  totalPaidAmount: number;
   enabled: string;
   totalAmount?: number;
-  totalAmmountPaid?: number;
-  totalAmmountRemaining?: number;
+  totalAmountRemaining?: number;
 }
 
 const createPromoCode = (
@@ -91,7 +85,7 @@ const createPromoCode = (
   email: string,
   discount: number,
   tototalSignedUpUsers: number,
-  totalPaidUsersForPromo: number,
+  totalPaidAmount: number,
   enabled: string
 ) => {
   return {
@@ -99,12 +93,10 @@ const createPromoCode = (
     email,
     discount,
     tototalSignedUpUsers,
-    totalPaidUsersForPromo,
     enabled,
     totalAmount: discount * tototalSignedUpUsers,
-    totalAmmountPaid: discount * totalPaidUsersForPromo,
-    totalAmmountRemaining:
-      discount * tototalSignedUpUsers - discount * totalPaidUsersForPromo,
+    totalPaidAmount,
+    totalAmountRemaining: discount * tototalSignedUpUsers - totalPaidAmount,
   };
 };
 
@@ -184,7 +176,7 @@ const PromoCodes = (props: Props) => {
               item.email,
               item.discount,
               item?.tototalSignedUpUsers || 0,
-              item?.totalPaidUsersForPromo || 0,
+              item.totalPaidAmount || 0,
               item?.enabled ? "Yes" : "No"
             ),
           ])
