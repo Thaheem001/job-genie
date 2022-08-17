@@ -136,7 +136,7 @@ const HomePage = () => {
                 <h2 className="">Price $199.99 for lifetime membership.</h2>
                 <ul className="mt-4 list-unstyled">
                   <li>The best part is you can get your money back.</li>
-                  <li>For each person you refer, you receive $5 dollars.</li>
+                  <li>For each person you refer, you receive $25 dollars.</li>
                 </ul>
               </div>
             </div>
