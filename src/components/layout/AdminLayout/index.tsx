@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AsideDash from "../../pages/Dashboard/Aside";
 import HomeLayout from "../HomeLayout";
 import MenuIcon from "@mui/icons-material/Menu";
+import { act } from "react-dom/test-utils";
 
 type AdminLayoutProps = {
   children?: React.ReactElement;
@@ -16,10 +17,15 @@ const adminMenu = [
     hasChildMenu: false,
     data: { link: "/admin/promocodes", heading: "Promocode Listing" },
   },
+  {
+    hasChildMenu: false,
+    data: { link: "/admin/challenges", heading: "Challenge Listing" },
+  },
 ];
 
 const AdminLayout = ({ children }: AdminLayoutProps) => {
   const [isactiveAside, setIsActiveAside] = useState<boolean>(false);
+
   return (
     <>
       <section>

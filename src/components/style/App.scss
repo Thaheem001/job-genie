@@ -996,8 +996,16 @@ footer {
   }
 }
 
-.promoCodeSection {
-  .createNewAction {
-    text-align: right;
-  }
+.createNewAction {
+  text-align: right;
+}
+
+button.form__control__btn {
+  color: black;
+  font-size: 12px;
+  padding: 5px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  margin-right: 10px;
 }

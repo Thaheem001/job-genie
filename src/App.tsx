@@ -23,6 +23,7 @@ import SourceCode from "./components/pages/Dashboard/SourceCode";
 import UserListingPage from "./components/pages/Admin/UserListing";
 import AdminRoute from "./components/Routes/AdminRoute";
 import PromoCodes from "./components/pages/Admin/PromoCodes";
+import ChallengeListing from "./components/pages/Admin/ChallengeListing";
 
 // scrol to top when change
 const ScrollToTop = () => {
@@ -69,6 +70,7 @@ const App = () => {
         <Route path="/admin" element={<AdminRoute />}>
           <Route path="" element={<UserListingPage />} />
           <Route path="promocodes" element={<PromoCodes />} />
+          <Route path="challenges" element={<ChallengeListing />} />
         </Route>
       </Routes>
     </Router>

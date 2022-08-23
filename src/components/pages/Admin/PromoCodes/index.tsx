@@ -259,7 +259,7 @@ const PromoCodes = (props: Props) => {
             <Modal
               open={addModalOpen}
               onClose={() => {
-                setAddModalOpen(true);
+                setAddModalOpen(false);
               }}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
