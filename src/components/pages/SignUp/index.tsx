@@ -10,7 +10,7 @@ import {
   Box,
 } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HomeLayout from "../../layout/HomeLayout";
 import ScreenLoader from "../../shared/ScreenLoader";
 import initializeStripe from "../../utils/initializeStripe";
@@ -19,6 +19,7 @@ import toast from "react-hot-toast";
 const SignUp = () => {
   const [checkBoxVal, setCheckBoxval] = useState<boolean>(true);
   const [isVisibile, setIsVisible] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -65,6 +66,10 @@ const SignUp = () => {
 
       if (resObj.status !== "success") {
         throw new Error(resObj.error);
+      }
+
+      if (resObj?.manualRedirect) {
+        return (window.location.href = resObj.manualRedirect);
       }
 
       const stripe = await initializeStripe();

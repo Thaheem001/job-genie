@@ -554,10 +554,15 @@ const ChallengeListing = (props: Props) => {
               </h6>
 
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <PrimaryButton value="Yes" onClick={handleDeleteChallenge} />
+                <PrimaryButton
+                  className="modal_btn"
+                  value="Yes"
+                  onClick={handleDeleteChallenge}
+                />
 
                 <PrimaryButton
                   value="No"
+                  className="modal_btn"
                   onClick={() => {
                     setDeleteModalOpen(false);
                     setFocusedChallenge(null);

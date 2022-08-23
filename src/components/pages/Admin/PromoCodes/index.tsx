@@ -290,6 +290,9 @@ const PromoCodes = (props: Props) => {
                   className="my-2 w-100"
                   name="discount"
                   type="number"
+                  inputProps={{
+                    step: "0.01",
+                  }}
                 />
 
                 <button type="submit" className="btn-own w-100">
