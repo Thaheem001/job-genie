@@ -416,7 +416,7 @@ const ChallengeListing = (props: Props) => {
                 <div>
                   <Select<Option>
                     name="level"
-                    placeholder="Slect Difficulty"
+                    placeholder="Select Difficulty"
                     options={levelOptions}
                   />
                 </div>
@@ -502,7 +502,7 @@ const ChallengeListing = (props: Props) => {
                 <div>
                   <Select<Option>
                     name="level"
-                    placeholder="Slect Difficulty"
+                    placeholder="Select Difficulty"
                     options={levelOptions}
                     defaultValue={levelOptions.find(
                       (item) => item.value === focusedChallenge?.type
@@ -550,7 +550,7 @@ const ChallengeListing = (props: Props) => {
           >
             <Box sx={style} component="form" onSubmit={handleEditChallenge}>
               <h6 className="text-dark text-center">
-                Realy want to delete Challenge
+                Really want to delete Challenge
               </h6>
 
               <div style={{ display: "flex", justifyContent: "space-between" }}>
