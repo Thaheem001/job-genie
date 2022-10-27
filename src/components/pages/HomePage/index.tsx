@@ -12,7 +12,7 @@ const HomePage = () => {
             <div className="row h-100 align-items-center ">
               <div className="col-md-8 text-center text-md-left">
                 <h1 className="mainHeading text-light">
-                  Are you a Javascript Developer looking for a job?
+                 Are you looking for a job in software development?
                 </h1>
 
                 <PrimaryButton
@@ -104,8 +104,7 @@ const HomePage = () => {
                 </h3>
                 <ul className="content-list">
                   <li>
-                    Improve your portfolio & Javascript skills by completing
-                    challenges.
+                    Improve your portfolio & coding skills by completing real world projects, interview questions and case studies
                   </li>
                   <li>Win cash prizes ($500+)</li>
                 </ul>
